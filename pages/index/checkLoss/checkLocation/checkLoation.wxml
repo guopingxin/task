@@ -1,0 +1,25 @@
+<!--pages/index/checkLoss/checkLocation/checkLoation.wxml-->
+<import src="../../../template/top1.wxml" />
+
+<view class='topwhole'>
+  <view class='back-img' bindtap='backPage1'>
+    <image src='https://612d-a-data-1a3ebf-1257782233.tcb.qcloud.la/allImage/back.png?sign=565025f0da194654889abe07889eb93d&t=1541732247'></image>
+  </view>
+  <view  class='top-text'>
+      {{titleTop}}
+  </view>
+</view>
+
+<view>
+  <map id="myMap" markers="{{markers}}" style="width:100%;height:660rpx;"
+  longitude="{{poi.longitude}}" latitude="{{poi.latitude}}" scale='16' show-location>
+  </map>
+
+  <view wx:for="{{markers}}" class='marker' bindtap='selectlocation' data-licationid='{{index}}'>
+    <text>{{item.title}}</text>
+    <image src='/pages/img/active.png' wx:if="{{index==imageurl}}"></image>
+  </view>
+
+</view>
+
+<view class='sure' bindtap='checkLocation'>确定</view>

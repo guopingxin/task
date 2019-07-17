@@ -1,0 +1,73 @@
+<import src="../template/top.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}'>
+<view class='titleText'>最新通知</view>
+<view class="scrollInfor">
+  <view class='scroll-content'> 暂无最新通知</view>
+</view>
+<view class="titleText" wx:if='{{ownModule.checkLoss||ownModule.push||ownModule.trailer||ownModule.rescue}}'>业务管理</view>
+<view class="section">
+  <view class='task' wx:if='{{ownModule.checkLoss}}' bindtap='toCheckLoss'>
+    <view class="zan-icon">
+      <image src='../img/ckds@2x.png' style='width:38px;height:34px'></image>
+      <view class="badge-count" wx:if='{{false}}'>{{count}}</view>
+    </view>
+    <view>任务流</view>
+  </view>
+  <view class='task' wx:if='{{(ownModule.push)&&(serviceType==1||serviceType==11)}}' bindtap='tofixCar'>
+    <view class="zan-icon">
+      <image src='../img/cltx@2x.png' style='width:38px;height:34px'></image>
+      <view class="badge-count" wx:if='{{false}}'>2</view>
+    </view>
+    <view>车辆推修</view>
+  </view>
+  <view class='task' wx:if='{{(ownModule.push)&&(serviceType!=1&&serviceType!=11)}}' bindtap='tofixCar1'>
+    <view class="zan-icon">
+      <image src='../img/cltx@2x.png' style='width:38px;height:34px'></image>
+      <view class="badge-count" wx:if='{{false}}'>2</view>
+    </view>
+    <view>车辆维修</view>
+  </view>
+ 
+  <view class='task' wx:if='{{ownModule.trailer}}' bindtap='toTrail'>
+    <view class="zan-icon">
+      <image src='../img/tc@2x.png' style='width:38px;height:34px'></image>
+      <view class="badge-count" wx:if='{{false}}'>2</view>
+    </view>
+    <view>拖车</view>
+  </view>
+  <view class='task' wx:if='{{ownModule.rescue}}' bindtap='toRescue'>
+    <view class="zan-icon">
+      <image src='../img/jjjy@2x.png' style='width:38px;height:34px'></image>
+      <view class="badge-count" wx:if='{{false}}'>2</view>
+    </view>
+    <view>救援</view>
+  </view>
+</view>
+<view class="titleText" wx:if='{{serviceType!=1&&serviceType!=11}}'>订单管理</view>
+ <view class='task' wx:if='{{serviceType!=1&&serviceType!=11}}' bindtap='toOrder'>
+    <view class="zan-icon">
+      <image src='../img/cltx@2x.png' style='width:36px;height:35px'></image>
+      <view class="badge-count" wx:if='{{count!=0}}'>{{count}}</view>
+    </view>
+    <view>所有订单</view>
+  </view>
+<view class='modal' wx:if='{{locationModal}}'>
+  <view class='modalContent'>
+    <view class='data'>请开启地理位置授权</view>
+    <view class='cancelTop' style='text-align:center'>
+      <view class='cancel yes' bindtap='logOutL'>
+        <button open-type="openSetting" bindopensetting="handler">去打开</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view>
+</view>
+<view>
+
+</view>
+<view class='log_icon' wx:if='{{false}}'>
+  <image src='../img/logout.png'></image>
+</view>
+</view>

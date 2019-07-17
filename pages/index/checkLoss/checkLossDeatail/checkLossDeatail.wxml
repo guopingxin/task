@@ -1,0 +1,891 @@
+<!--pages/index/claimsDetail/claimsDetail.wxml-->
+<import src="../../../template/step1/step1.wxml" />
+<import src="../../../template/step/step.wxml" />
+<import src="../../template/getDataList/getDataList.wxml" />
+<import src="../../template/top1.wxml" />
+<import src="../../../template/top1.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}'>
+<view class='containerDe'>
+  <view wx:if='{{!addImage}}'>
+    <view class='headerDe'>
+      <view class='titDe'>业务基本信息
+        <!-- <view wx:if='{{detail.status!=6&&opratorRank==1}}' bindtap='openModal' class='zan-icon zan-icon-wap-nav'></view> -->
+        <view bindtap='openModal' class='zan-icon zan-icon-wap-nav'></view>
+      </view>
+    </view>
+    <view class='sectionDe'>
+      <view class='contentDe' bindtouchstart='enablePage'>
+        <view class='eachInforDe'>
+          <label class='inforLabel'>业务编号</label>
+          <text class='inforTest'>{{detail.survey_no}}</text>
+        </view>
+        <view class='eachInforDe'>
+          <label class='inforLabel'>查勘员</label>
+          <text class='inforTest'>{{userName}}</text>
+        </view>
+
+        <view class='eachInforDe'>
+          <label class='inforLabel'>工号</label>
+          <text class='inforTest'>{{usernumber}}</text>
+        </view>
+
+        <view class='eachInforDe'>
+          <label class='inforLabel'>报案号</label>
+          <text class='inforTest'>{{detail.report_no}}</text>
+        </view>
+        <view class='eachInforDe'>
+          <label class='inforLabel'>任务流类型</label>
+          <text class='inforTest' wx:if='{{detail.type==0}}'>查勘</text>
+          <text class='inforTest' wx:if='{{detail.type==1}}'>三责</text>
+          <text class='inforTest' wx:if='{{detail.type==2}}'>标的</text>
+        </view>
+        
+
+        <!-- <view class='eachInforDe'>
+          <label class='inforLabel'>被保人</label>
+          <text class='inforTest'>{{detail.recognizee}}</text>
+        </view>
+        <view class='eachInforDe' wx:if='{{detail.service_id}}' data-num='{{detail.mobile}}' bindtap='link'>
+          <label class='inforLabel'>联系电话</label>
+          <text class='phoneText zan-icon zan-icon-phone'></text>
+          <text class='inforTest phoneText'> {{detail.mobile}}</text>
+        </view> -->
+        <!-- <view class='eachInforDe' wx:if='{{detail.car_no}}'>
+          <label class='inforLabel'>车牌号码</label>
+          <text class='inforTest'>{{detail.car_no}}</text>
+        </view> -->
+
+        <view class='eachInforDe' wx:if="{{detail.car_no}}">
+          <label class='inforLabel'>车牌号码</label>
+          <text class='inforTest'>{{detail.car_no}}</text>
+        </view>
+
+        <view class='eachInforDe'>
+          <label class='inforLabel'>保险公司</label>
+          <text class='inforTest'>{{insuranceCom.name}}</text>
+        </view>
+
+        <view class='eachInforDe'>
+          <label class='inforLabel'>任务类型</label>
+          <text class='inforTest'>{{detail.task_type}}</text>
+        </view>
+
+        <view class='eachInforDe' wx:if="{{detail.case_type}}">
+          <label class='inforLabel'>案件类型</label>
+          <text class='inforTest'>{{detail.case_type}}</text>
+        </view>
+
+        <view class='eachInforDe' wx:if="{{detail.send_time}}">
+          <label class='inforLabel'>派工时间</label>
+          <text class='inforTest'>{{detail.send_time}}</text>
+        </view>
+
+        <view class='eachInforDe' wx:if="{{detail.are}}">
+          <label class='inforLabel'>区域</label>
+          <text class='inforTest'>{{detail.are}}</text>
+        </view>
+
+        <view class='eachInforDe' wx:if="{{detail.send_date}}">
+          <label class='inforLabel'>派工时间段</label>
+          <text class='inforTest'>{{detail.send_date}}</text>
+        </view>
+
+        <view class='eachInforDe' wx:if="{{detail.report_date}}">
+          <label class='inforLabel'>报案时间</label>
+          <text class='inforTest'>{{detail.report_date}}</text>
+        </view>
+
+        <view class='eachInforDe' wx:if="{{detail.send_user}}">
+          <label class='inforLabel'>派工人</label>
+          <text class='inforTest'>{{detail.send_user}}</text>
+        </view>
+
+        <view class='eachInforDe' wx:if="{{detail.policy_no}}">
+          <label class='inforLabel'>保单号</label>
+          <text class='inforTest'>{{detail.policy_no}}</text>
+        </view>
+
+        <view class='eachInforDe' wx:if="{{detail.ins_org}}">
+          <label class='inforLabel'>承保机构</label>
+          <text class='inforTest'>{{detail.ins_org}}</text>
+        </view>
+
+        <view class='eachInforDe' wx:if="{{detail.survey_address}}">
+          <label class='inforLabel'>出险/定损地点</label>
+          <!-- <text class='inforTest'>{{detail.survey_address}}</text> -->
+          <input value='{{detail.survey_address}}' style='width:70%;display:inline-block;vertical-align: middle'/>
+        </view>
+
+        <!-- <view class='eachInforDe' wx:if='{{detail.service_id}}'>
+          <label class='inforLabel'>服务商</label>
+          <text class='inforTest'>{{serviceInfor.short_name}}</text>
+        </view> -->
+
+        <view class='eachInforDe' wx:if='{{detail.task_id&&detail.task_id!=userId&&opratorRank==1}}'>
+          <label class='inforLabel'>作业员</label>
+          <text class='inforTest'>{{oprator.nickname}}</text>
+        </view>
+        <!-- <view class='eachInforDe' wx:if='{{detail.task_id&&detail.task_id!=userId&&opratorRank==1}}' data-num='{{oprator.mobile}}' bindtap='link'>
+          <label class='inforLabel'>联系电话</label>
+          <text class='phoneText zan-icon zan-icon-phone'></text>
+          <text class='inforTest phoneText'> {{oprator.mobile}}</text>
+        </view> -->
+        <!-- <view class='eachInforDe'>
+          <label class='inforLabel'>预估金额</label>
+          <text class='inforTest'>{{detail.money}}</text>
+        </view> -->
+        <view class='eachInforDe'>
+          <label class='inforLabel'>状态</label>
+          <text class='inforTest' wx:if='{{detail.status==0}}'>待审核</text>
+          <text class='inforTest' wx:if='{{detail.status==1}}'>审核失败</text>
+          <text class='inforTest' wx:if='{{detail.status==2}}'>审核成功</text>
+          <text class='inforTest' wx:if='{{detail.status==3}}'>已分配</text>
+          <text class='inforTest' wx:if='{{detail.status==4}}'>进行中</text>
+          <text class='inforTest' wx:if='{{detail.status==5}}'>已取消</text>
+          <text class='inforTest' wx:if='{{detail.status==6}}'>已完成</text>
+        </view>
+        <view class='eachInforDe' wx:if="{{detail.survey_date}}">
+          <label class='inforLabel'>查勘时间</label>
+          <text class='inforTest'>{{detail.survey_date}}</text>
+        </view>
+        <view class='eachInforDe' wx:if='{{detail.update_time}}'>
+          <label class='inforLabel'>最后更新</label>
+          <text class='inforTest'>{{detail.update_time}}</text>
+        </view>
+        <view class='eachInforDe' wx:if='{{detail.remark}}'>
+          <label class='inforLabel'>备注</label>
+          <text class='inforTest'>{{detail.remark}}</text>
+        </view>
+        <view class='eachInforDe' bindtap='getCodeImg' wx:if='{{detail.status>3&&detail.comment==0&&myClaims}}'>
+          <label class='inforLabel'>评价</label>
+          <text class='inforTest' style='color:#3891F8'>二维码</text>
+        </view>
+        <view class='eachInforDe' wx:if='{{detail.status>3&&detail.comment==1}}'>
+          <label class='inforLabel'>评价</label>
+          <text class='inforTest'>已评价</text>
+        </view>
+        <view class='eachInforDe' wx:if='{{detail.is_push==1&&detail.task_id!=userId&&hasPush}}'>
+          <label class='inforLabel'>推修状态</label>
+          <text class='inforTest'>已推修</text>
+        </view>
+      </view>
+    </view>
+    <view class='headerDe' wx:if='{{third.length>0}}'>
+      <view class='titDe'>三者信息</view>
+    </view>
+    <view class='third_content' wx:if='{{third.length>0}}'>
+      <view class='third_cell' wx:for='{{third}}' wx:for-item='item'>
+        <view class='third_tit'>三者信息{{index+1}}</view>
+        <view class='eachInforDe'>
+          <label class='inforLabel'>联系电话</label>
+          <text class='inforTest'>{{item.phone}}</text>
+        </view>
+        <view class='eachInforDe'>
+          <label class='inforLabel'>车牌</label>
+          <text class='inforTest'>{{item.car_no}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if='{{detail.status>2}}'>
+      <view class='headerDe'>
+        <view class='titDe'>业务时效</view>
+      </view>
+      <view class="zan-panel" bindtouchstart='enablePage' wx:if='{{detail.status>2}}'>
+        <view class="zan-cell zan-cell">
+          <view class="zan-cell__bd stepContent">
+            <template is="zan-steps1" data="{{ type: 'vertical', hasDesc: true, steps1 }}"></template>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if='{{pushSetviceInfor}}'>
+      <view class='headerDe' wx:if='{{detail.type==1}}'>
+        <view class='titDe'>推修结果</view>
+      </view>
+      <view class='sectionDe'>
+        <view class='eachInforDe'>
+          <label class='inforLabel'>推修服务商</label>
+          <text class='inforTest'>{{pushSetviceInfor.short_name?pushSetviceInfor.short_name:pushSetviceInfor.name}}</text>
+        </view>
+        <view class='eachInforDe'>
+          <label class='inforLabel'>推修状态</label>
+          <text class='inforTest' wx:if='{{pushDetail.result==0}}'>未反馈</text>
+          <text class='inforTest' wx:if='{{pushDetail.result==1}}'>成功</text>
+          <text class='inforTest' wx:if='{{pushDetail.result==2}}'>失败</text>
+          <text class='inforTest' wx:if='{{pushDetail.result==3}}'>不确定</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if='{{steps1.length!=0&&detail.type==1}}'>
+      <view class='headerDe'>
+        <view class='titDe' style='display:inline-block'>推修进度</view>
+        <!-- <view class='titDe addPro' bindtap='toAddProgress' wx:if='{{pushDetail.status!=6&&pushDetail.result==1}}'>添加推修进度</view>
+        <view class='titDe addPro' bindtap='finishPush' wx:if='{{pushDetail.status!=6&&pushDetail.result==1}}'>完成</view> -->
+      </view>
+      <view class="zan-panel">
+        <view class="zan-cell zan-cell">
+          <view class="zan-cell__bd">
+            <template is="zan-steps" data="{{ type: 'vertical', hasDesc: true, steps }}"></template>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class='sectionDe'>
+      <view class='eachInforDe' wx:if='{{ckzpp1.length!=0}}'>
+        <view class='detailTit'>人车合一</view>
+        <view>
+          <view>
+            <view class='imgOuter' wx:for='{{ckzpp1}}' wx:item='item'>
+              <image bindtap='openImg1' class='detailImg' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class='eachInforDe' wx:if='{{ckzpp2.length!=0}}'>
+        <view class='detailTit'>车架号</view>
+        <view wx:if='{{steps[0].outer.length!=0}}'>
+
+          <view class='imgOuter' wx:for='{{ckzpp2}}'>
+            <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+          </view>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{ckzpp3.length!=0}}'>
+        <view class='detailTit'>环境照片：事故现场大环境照片，以确认事故成因。</view>
+        <view class='imgOuter' wx:for='{{ckzpp3}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+
+      </view>
+      <view class='eachInforDe' wx:if='{{ckzpp4.length!=0}}'>
+        <view class='detailTit'>验车照片：整车斜45°角四个角拍摄。</view>
+        <view class='imgOuter' wx:for='{{ckzpp4}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{ckzpp5.length!=0}}'>
+        <view class='detailTit'>车损照片：本次事故造成损伤部位照片。</view>
+
+        <view class='imgOuter' wx:for='{{ckzpp5}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{ckzpp6.length!=0}}'>
+        <view class='detailTit'>旧伤确认</view>
+        <view class='imgOuter' wx:for='{{ckzpp6}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+
+      <view class='eachInforDe' wx:if='{{gydzp1.length!=0}}'>
+        <view class='detailTit'>事故证明</view>
+        <view class='imgOuter' wx:for='{{gydzp1}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{gydzp2.length!=0}}'>
+        <view class='detailTit'>索赔申请书</view>
+        <view class='imgOuter' wx:for='{{gydzp2}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{gydzp3.length!=0}}'>
+        <view class='detailTit'>行驶证</view>
+        <view class='imgOuter' wx:for='{{gydzp3}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{gydzp4.length!=0}}'>
+        <view class='detailTit'>驾驶证</view>
+        <view class='imgOuter' wx:for='{{gydzp4}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{gydzp5.length!=0}}'>
+        <view class='detailTit'>查勘报告</view>
+        <view class='imgOuter' wx:for='{{gydzp5}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{gydzp6.length!=0}}'>
+        <view class='detailTit'>个案签报</view>
+        <view class='imgOuter' wx:for='{{gydzp6}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{gydzp7.length!=0}}'>
+        <view class='detailTit'>拒赔材料</view>
+        <view class='imgOuter' wx:for='{{gydzp7}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{gydzp8.length!=0}}'>
+        <view class='detailTit'>从民资格证</view>
+        <view class='imgOuter' wx:for='{{gydzp8}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{gydzp9.length!=0}}'>
+        <view class='detailTit'>法院判决书</view>
+        <view class='imgOuter' wx:for='{{gydzp9}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{gydzp10.length!=0}}'>
+        <view class='detailTit'>调查单证</view>
+        <view class='imgOuter' wx:for='{{gydzp10}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{zfdzp1.length!=0}}'>
+        <view class='detailTit'>收款方账户信息</view>
+        <view class='imgOuter' wx:for='{{zfdzp1}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+      <view class='eachInforDe' wx:if='{{zfdzp2.length!=0}}'>
+        <view class='detailTit'>收款方身份证明</view>
+        <view class='imgOuter' wx:for='{{zfdzp2}}'>
+          <image bindtap='openImg1' id='{{item.imgId}}' class='detailImg' src='{{hostName}}uploads/work/{{item.path}}'></image>
+        </view>
+      </view>
+
+
+    </view>
+  </view>
+  <!--再次更新-->
+  <view wx:if='{{addImage}}'>
+    <view class='headerDe' wx:if='{{detail.status>3}}'>
+      <view class='titDe'>查勘明细</view>
+    </view>
+    <view class='imageCell' wx:if='{{detail.status>3}}' style='height:{{navHeight}}'>
+      <view class='nav' bindtouchmove='stopPage' style='height:{{navHeight}}'>
+        <view wx:for='{{listArr}}' wx:for-item="itemName" class='{{itemName.class}}' data-name='{{itemName.dataName}}' bindtap='changeView'>
+          <text>{{itemName.name}}</text>
+        </view>
+      </view>
+      <view class='imageContent' style='height:{{navHeight}}'>
+
+        <scroll-view class='imageBack' scroll-y style='height:{{navHeight}}' bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+          <view id='ckzp1'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>人车合一</text>
+                <view class='addTit' bindtap='toselectTake' id='0' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell' data-modul='ckzp1'>
+
+              <view class='imgCell' wx:for='{{ckzpp1}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+
+              <view class='imgCell' wx:if='{{ckzpp1.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image class='plusPic' bindtap='toselectTake' src='../../../img/plus.png' id='0'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view id='ckzp2'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>车架号</text>
+                <view class='addTit' bindtap='toselectTake' id='1' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell'>
+
+              <view class='imgCell' wx:for='{{ckzpp2}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+
+              <view class='imgCell' wx:if='{{ckzpp2.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image class='plusPic' id='1' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view id='ckzp3'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>环境照片</text>
+                <view class='addTit' bindtap='toselectTake' id='2' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell'>
+
+              <view class='imgCell' wx:for='{{ckzpp3}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+              <view class='imgCell' wx:if='{{ckzpp3.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image id='2' bindtap='toselectTake' class='plusPic' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view id='ckzp4'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>验车照片</text>
+                <view class='addTit' bindtap='toselectTake' id='3' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell'>
+
+              <view class='imgCell' wx:for='{{ckzpp4}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+              <view class='imgCell' wx:if='{{ckzpp4.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image id='3' bindtap='toselectTake' class='plusPic' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view id='ckzp5'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>车损照片</text>
+                <view class='addTit' bindtap='toselectTake' id='4' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell'>
+              <view class='imgCell' wx:for='{{ckzpp5}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+              <view class='imgCell' wx:if='{{ckzpp5.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image id='4' bindtap='toselectTake' class='plusPic' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view id='ckzp6'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>旧伤照片</text>
+                <view class='addTit' bindtap='toselectTake' id='5' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell'>
+
+              <view class='imgCell' wx:for='{{ckzpp6}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+              <view class='imgCell' wx:if='{{ckzpp6.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image id='5' bindtap='toselectTake' class='plusPic' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view id='gydz1'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>事故证明</text>
+                <view class='addTit' bindtap='toselectTake' id='6' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell'>
+              <view class='imgCell' wx:for='{{gydzp1}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+              <view class='imgCell' wx:if='{{gydzp1.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image id='6' bindtap='toselectTake' class='plusPic' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view id='gydz2'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>索赔申请书</text>
+                <view class='addTit' bindtap='toselectTake' id='7' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell'>
+
+              <view class='imgCell' wx:for='{{gydzp2}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+              <view class='imgCell' wx:if='{{gydzp2.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image class='plusPic' id='7' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view id='gydz3'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>行驶证</text>
+                <view class='addTit' bindtap='toselectTake' id='8' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell'>
+
+              <view class='imgCell' wx:for='{{gydzp3}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+              <view class='imgCell' wx:if='{{gydzp3.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image class='plusPic' id='8' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view id='gydz4'>
+            <view class='tip'>
+              <view>
+                <text class='picTit'>驾驶证</text>
+                <view class='addTit' bindtap='toselectTake' id='9' wx:if='{{myClaims}}'>
+                  <text>添加</text>
+                  <image src='../../../img/rAngle.png' class='rAngle'></image>
+                </view>
+              </view>
+            </view>
+            <view class='allCell'>
+
+              <view class='imgCell' wx:for='{{gydzp4}}' wx:item='item'>
+                <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+              </view>
+              <view class='imgCell' wx:if='{{gydzp4.length==0}}' wx:if='{{myClaims}}'>
+                <view class='imgborder'>
+                  <image class='plusPic' id='9' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+            </view>
+            <view id='gydz5'>
+              <view class='tip'>
+                <view>
+                  <text class='picTit'>查勘报告</text>
+                  <view class='addTit' bindtap='toselectTake' id='10' wx:if='{{myClaims}}'>
+                    <text>添加</text>
+                    <image src='../../../img/rAngle.png' class='rAngle'></image>
+                  </view>
+                </view>
+              </view>
+              <view class='allCell'>
+
+                <view class='imgCell' wx:for='{{gydzp5}}' wx:item='item'>
+                  <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+                </view>
+                <view class='imgCell' wx:if='{{gydzp5.length==0}}' wx:if='{{myClaims}}'>
+                  <view class='imgborder'>
+                    <image class='plusPic' id='10' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view id='gydz6'>
+              <view class='tip'>
+                <view>
+                  <text class='picTit'>个案签报</text>
+                  <view class='addTit' bindtap='toselectTake' id='11' wx:if='{{myClaims}}'>
+                    <text>添加</text>
+                    <image src='../../../img/rAngle.png' class='rAngle'></image>
+                  </view>
+                </view>
+              </view>
+              <view class='allCell'>
+
+                <view class='imgCell' wx:for='{{gydzp6}}' wx:item='item'>
+                  <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+                </view>
+                <view class='imgCell' wx:if='{{gydzp6.length==0}}' wx:if='{{myClaims}}'>
+                  <view class='imgborder'>
+                    <image class='plusPic' id='11' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view id='gydz7'>
+              <view class='tip'>
+                <view>
+                  <text class='picTit'>拒赔材料</text>
+                  <view class='addTit' bindtap='toselectTake' id='12' wx:if='{{myClaims}}'>
+                    <text>添加</text>
+                    <image src='../../../img/rAngle.png' class='rAngle'></image>
+                  </view>
+                </view>
+              </view>
+              <view class='allCell'>
+
+                <view class='imgCell' wx:for='{{gydzp7}}' wx:item='item'>
+                  <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+                </view>
+                <view class='imgCell' wx:if='{{gydzp7.length==0}}' wx:if='{{myClaims}}'>
+                  <view class='imgborder'>
+                    <image class='plusPic' id='12' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view id='gydz8'>
+              <view class='tip'>
+                <view>
+                  <text class='picTit'>从业资格证</text>
+                  <view class='addTit' bindtap='toselectTake' id='13' wx:if='{{myClaims}}'>
+                    <text>添加</text>
+                    <image src='../../../img/rAngle.png' class='rAngle'></image>
+                  </view>
+                </view>
+              </view>
+              <view class='allCell'>
+
+                <view class='imgCell' wx:for='{{gydzp8}}' wx:item='item'>
+                  <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+                </view>
+                <view class='imgCell'>
+                  <view class='imgborder' wx:if='{{gydzp8.length==0}}' wx:if='{{myClaims}}'>
+                    <image class='plusPic' id='13' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view id='gydz9'>
+              <view class='tip'>
+                <view>
+                  <text class='picTit'>法院判决书</text>
+                  <view class='addTit' bindtap='toselectTake' id='14' wx:if='{{myClaims}}'>
+                    <text>添加</text>
+                    <image src='../../../img/rAngle.png' class='rAngle'></image>
+                  </view>
+                </view>
+              </view>
+              <view class='allCell'>
+
+                <view class='imgCell' wx:for='{{gydzp9}}' wx:item='item'>
+                  <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+                </view>
+                <view class='imgCell' wx:if='{{gydzp9.length==0}}' wx:if='{{myClaims}}'>
+                  <view class='imgborder'>
+                    <image class='plusPic' id='14' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view id='gydz10'>
+              <view class='tip'>
+                <view>
+                  <text class='picTit'>调查单证</text>
+                  <view class='addTit' bindtap='toselectTake' id='15' wx:if='{{myClaims}}'>
+                    <text>添加</text>
+                    <image src='../../../img/rAngle.png' class='rAngle'></image>
+                  </view>
+                </view>
+              </view>
+              <view class='allCell'>
+
+                <view class='imgCell' wx:for='{{gydzp10}}' wx:item='item'>
+                  <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+                </view>
+                <view class='imgCell'>
+                  <view class='imgborder' wx:if='{{gydzp10.length==0}}' wx:if='{{myClaims}}'>
+                    <image class='plusPic' id='15' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view id='zfdz1'>
+              <view class='tip'>
+                <view>
+                  <text class='picTit'>收款方账户信息</text>
+                  <view class='addTit' bindtap='toselectTake' id='16' wx:if='{{myClaims}}'>
+                    <text>添加</text>
+                    <image src='../../../img/rAngle.png' class='rAngle'></image>
+                  </view>
+                </view>
+              </view>
+              <view class='allCell'>
+
+                <view class='imgCell' wx:for='{{zfdzp1}}' wx:item='item'>
+                  <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+                </view>
+                <view class='imgCell' wx:if='{{zfdzp1.length==0}}' wx:if='{{myClaims}}'>
+                  <view class='imgborder'>
+                    <image class='plusPic' id='16' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view id='zfdz2'>
+              <view class='tip'>
+                <view>
+                  <text class='picTit'>收款方身份证明</text>
+                  <view class='addTit' bindtap='toselectTake' id='17' wx:if='{{myClaims}}'>
+                    <text>添加</text>
+                    <image src='../../../img/rAngle.png' class='rAngle'></image>
+                  </view>
+                </view>
+              </view>
+              <view class='allCell'>
+                <view class='imgCell' wx:for='{{zfdzp2}}' wx:item='item'>
+                  <image bindtap='openImg1' class='plusPic' id='{{item.imgId}}' src='{{hostName}}uploads/work/{{item.path}}'></image>
+                </view>
+                <view class='imgCell' wx:if='{{zfdzp2.length==0}}' wx:if='{{myClaims}}'>
+                  <view class='imgborder'>
+                    <image class='plusPic' id='17' bindtap='toselectTake' src='../../../img/plus.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</view>
+<form bindsubmit='submitFormId' report-submit='true'>
+  <button form-type='submit' hover-class="none" class='formIdBtn'>
+    <view class='' wx:if='{{myClaims}}'>
+      <view class='oprationBtm' wx:if='{{detail.status==3}}'>
+        <button class='accept' bindtap='orders'>接 单</button>
+      </view>
+      <view class='oprationBtm' wx:if='{{detail.status==4||detail.status==6}}'>
+        <button class='addProBtn' wx:if='{{!hasReach}}' bindtap='reachScene' style='width:30%;'>到达现场 </button>
+        <button style='display:inline-block;width:30%;margin-left:30px;font-size:14px;' wx:if='{{detail.is_push==0&&hasPush&&detail.type==0}}' class='addProBtn overTask' bindtap='tofix'>推修</button>
+        <button style='display:inline-block;width:30%;margin-left:30px;font-size:14px;' wx:if='{{detail.is_push==1&&hasPush&&detail.type==1&&pushDetail.result==0}}' class='addProBtn overTask' bindtap='openFeedback'>反馈推修</button>
+        <button style='display:inline-block;width:30%;margin-left:30px;font-size:14px;' wx:if='{{detail.is_push==1&&hasPush&&detail.type==0}}' class='addProBtn overTask'>已推修</button>
+      </view>
+      <view class='oprationBtm' wx:if='{{allEnd}}'>
+        <view style='display:inline-block;width:{{viewWidth}};vertical-align:top;height:60px' wx:if='{{hasReach}}'>
+          <button style='display:inline-block;width:{{widthView}};font-size:14px;' wx:if='{{!inDetail}}' class='addProBtn overTask' bindtap='addPicBtn'>添加明细</button>
+
+          <button style='background:#3791F6;display:inline-block;width:{{widthView}}' wx:if='{{inDetail}}' class='addProBtn overTask' bindtap='backDetail'>返回详情</button>
+          <view style='display:inline-block;width:4%' wx:if='{{hasPush}}'></view>
+          <button style='display:inline-block;width:48%;font-size:14px;' wx:if='{{detail.is_push==0&&hasPush&&detail.type==0}}' class='addProBtn overTask' bindtap='tofix'>推修</button>
+          <button style='display:inline-block;width:48%;font-size:14px;' wx:if='{{detail.is_push==1&&hasPush&&detail.type==1&&pushDetail.result==0}}' class='addProBtn overTask' bindtap='openFeedback'>反馈推修</button>
+          <button style='display:inline-block;width:48%;font-size:14px;' wx:if='{{detail.is_push==1&&hasPush&&detail.type==0}}' class='addProBtn overTask'>已推修</button>
+        </view>
+        <view style='display:inline-block;width:{{spacing}}'></view>
+        <button wx:if='{{hasReach}}' style='width:{{btnView}};' class='addProBtn overTask' bindtap='finish'>结 　案</button>
+      </view>
+      <view class='oprationBtm' wx:if='{{endCase}}'>
+        <button style='display:inline-block;width:40%' wx:if='{{!inDetailEnd}}' class='addProBtn overTask' bindtap='addPicBtn'>添加明细</button>
+       
+        <button style='display:inline-block;width:40%' wx:if='{{inDetailEnd}}' class='addProBtn overTask' bindtap='backDetail'>返回详情</button>
+         <view style='width:10%;display:inline-block' wx:if='{{detail.is_push==1&&hasPush&&detail.type==1&&pushDetail.result==0}}'></view>
+        <button style='display:inline-block;width:40%' wx:if='{{detail.is_push==1&&hasPush&&detail.type==1&&pushDetail.result==0}}' class='addProBtn overTask' bindtap='openFeedback'>反馈推修</button>
+         <view style='width:10%;display:inline-block' wx:if='{{detail.type==0}}'></view>
+     
+        <button wx:if='{{detail.is_push==0&&hasPush&&detail.type==0}}' style='display:inline-block;width:40%' class='addProBtn overTask' bindtap='tofix'>推 　修</button>
+        <button wx:if='{{detail.is_push==1&&hasPush&&detail.type==0}}' style='display:inline-block;width:40%' class='addProBtn overTask'>已推修</button>
+      </view>
+    </view>
+  </button>
+</form>
+
+<view class='modalDe' wx:if='{{modal}}' catchtap='closeOprationModal'>
+  <view class='modalContentDe' style='height:{{ss}}' catchtap='stopBubble'>
+
+    <view class='eachInformodalDe' bindtap='toEdit' wx:if="{{detail.status != 6}}">
+      <text class='zan-icon zan-icon-passed'></text>　编辑</view> 
+      <!-- zan-icon-edit -->
+
+    <view wx:if='{{detail.status==0}}' class='eachInformodalDe' catchtap='checkModal'>
+      <text class='zan-icon zan-icon-passed'></text>　审核</view>
+
+    <view class='eachInformodalDe' wx:if='{{detail.status==2||detail.status==3||detail.status==5||detail.status==4}}' catchtap='toSelectPeople'>
+      <text class='zan-icon zan-icon-exchange-record'></text>　分配</view>
+
+    <view class='eachInformodalDe' catchtap='toDelete'>
+      <text class='zan-icon zan-icon-close'></text>　删除</view>
+
+      <!-- wx:if='{{detail.task_id}}' -->
+    <view class='eachInformodalDe' wx:if='{{detail.status != 6}}' bindtap='cancelClaim' >
+      <text class='zan-icon zan-icon-edit-data'></text>　取消</view>
+  </view>
+</view>
+
+<view class='modalInforDe' catchtap='cancelAllModal' wx:if='{{takeOrimport}}'>
+  <view class='modalInforContentDe'>
+    <view class='InforDe' bindtap='totake'>拍摄</view>
+    <view class='InforDe' bindtap='toAbulm'>从相册选择</view>
+  </view>
+</view>
+
+<view class='modalInforDe' wx:if='{{deleteMODAL}}'>
+  <view class='modalInforContentDe'>
+    <view class='InforDe'>确定删除此业务？</view>
+    <view class='confirmDe yesDe' bindtap='confirmDelete'> 确认</view>
+    <view class='confirmDe noDe' bindtap='cancelDeleteModal'> 取消</view>
+  </view>
+</view>
+<view class='modalInforDe' wx:if='{{cancelModal}}'>
+  <view class='modalInforContentDe'>
+    <view class='InforDe'>确定取消？</view>
+    <view class='confirmDe yesDe' bindtap='confirmCancel'> 确认</view>
+    <view class='confirmDe noDe' bindtap='noCancel'> 取消</view>
+  </view>
+</view>
+<view class='modalInforDe' wx:if='{{detail.code}}'>
+  <view class='modalInforContentDe' style='width:280px;height:280px;margin-top:20%;background:#fff'>
+    <image src='https://www.feecgo.com/task/evaluate/qr_code/case_id/{{details.listId}}/service_id/{{detail.service_id}}' style='width:80%;height:{{detail.codeHeight}};margin-top:10%'></image>
+    <image src='../../../img/code.gif' style='width:30%;height:30%;margin-top:10%' wx:if='{{!detail.codeOk}}'></image>
+    <view wx:if='{{!detail.codeOk}}' style='font-size:30rpx;margin-top:30px;'>正在生成二维码...</view>
+  </view>
+  <image src='../../../img/times1.png' style='width:30px;height:30px;margin-top:80px' bindtap='closeCodeImg'></image>
+</view>
+
+
+<view class='modalInforDe' wx:if='{{iffeedback}}'>
+  <view class='modalInforContentDe' style='width:280px;background:#fffl;padding-bottom:30px;border-radius:0px'>
+    <view style='text-align:center'>
+      <view class='result'>
+        <view class='result_tit'>推修反馈:</view>
+        <button class='{{feedback==1?"active":""}}' style='width:33%' bindtap='feedback_status' id='1'>推修成功</button>
+        <button class='{{feedback==2?"active":""}}' bindtap='feedback_status' id='2'>推修失败</button>
+        <!-- <button class='{{feedback==3?"active":""}}' bindtap='feedback_status' id='3'>不确定</button> -->
+      </view>
+    </view>
+    <form bindsubmit='feedback' wx:if='{{detail.type==1&&pushDetail.result==0&&detail.is_push==1}}'>
+      <view class='result_con'>
+        <input type='text' placeholder='提交进度说明信息' value='{{feedback_con}}' name='con' />
+        <button form-type='submit' hover-class='none' class='result_sub' wx:if='{{!ok_btn}}'>提交</button>
+        <button form-type='submit' hover-class='none' class='result_sub' wx:if='{{ok_btn}}' style='background:#ccc;'>提交</button>
+        <button form-type='submit' hover-class='none' style='color:#aaa' bindtap='cancel1' class='result_sub'>取消</button>
+      </view>
+      <view style='background:#fff;text-align:center;height:20px;'>
+      </view>
+    </form>
+  </view>
+</view>
+</view>

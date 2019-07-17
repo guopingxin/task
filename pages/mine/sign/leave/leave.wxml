@@ -1,0 +1,46 @@
+<!--pages/index/sign/sign.wxml-->
+<import src="../../../template/top1.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}'>
+  <form bindsubmit='submit'>
+    <view class='allInfor'>
+      <view class='eachInfor'>
+        <view class='label'>请假人</view>
+        <view class='con'>
+          <input type='text' placeholder='请输入姓名' name='uname' value='{{uname}}'/>
+        </view>
+      </view>
+      <view class='eachInfor'>
+        <view class='label'><text class='redInfor' wx:if='{{reasonNull}}'> !</text> 请假事由</view>
+        <view class='con'>
+          <input type='text' placeholder='请输入请假事由' name='reason'/>
+        </view>
+      </view>
+      <view class='eachInfor'>
+        <view class='label'>请假时间</view>
+      </view>
+      <view class='eachInfor'>
+        <view class='con' style='width:46%;text-align:left'>
+          <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" name='data1' bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+            <view class="tui-picker-detail">
+              <text>{{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}:{{dateTimeArray1[5][dateTime1[5]]}}</text>
+              <image class='down' src='../../../img/down3.png'></image>
+            </view>
+          </picker>
+        </view>
+        <view style='display:inline-block;width:8%;text-align:center'>—</view>
+        <view class='con' style='width:46%'>
+          <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime" name='data' bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+            <view class="tui-picker-detail">
+              <text>{{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}:{{dateTimeArray[5][dateTime[5]]}}</text>
+              <image class='down' src='../../../img/down3.png'></image>
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view>
+        <button class='over' form-type='submit'>提交</button>
+      </view>
+    </view>
+  </form>
+</view>

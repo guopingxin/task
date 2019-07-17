@@ -1,0 +1,44 @@
+<import src="../../template/top1.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}'>
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale='16'
+ controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
+
+
+  <view  class='' wx:if='{{tracing}}'>
+  <view  class='InforDe' style='border:none'>正在记录接车行车轨迹...</view>
+  <view  class='traceData'><text>已经行驶</text><text wx:if='{{hourShow}}'>{{hour}}小时</text><text>{{time}}分钟，</text>
+        <text>行驶距离{{distance}}公里</text > 
+  </view >
+
+<view  class="content" wx:if='{{stop}}'>
+  <view class="sliderContent">
+    <view  class='input'placeholder="滑动停止" placeholder-class="input-placeholder" disabled="{{disabled}}" ></view>
+    <view  class="slider"  bindtouchstart="moveSendBtnStart" bindtouchend="stop" bindtouchmove="moveSendBtn"  style="left:{{moveSendBtnLeft}}rpx;background-color:{{SendBtnColor}}">滑动停止</view >
+  </view>
+</view >
+  </view >
+
+
+
+  <view class='' wx:if='{{startTrace}}'>
+  <view class='content1'>
+
+<radio-group >
+<radio checked='true' class='sendCar' value='0' bindtap='typeCar1'>接车</radio>
+<radio class='sendCar' value='1' bindfocus='aav' bindtap='typeCar2'>送车</radio>
+</radio-group>  
+<view class="" wx:if='{{true}}'>
+  <button class='btn' bindtap='getLocationTime'>开始行车轨迹</button>
+</view>
+   
+  </view>
+</view>
+  <view class='content1' wx:if='{{overTrace}}'>
+    <view  class='InforDe' style='border:none'>已完成记录接车行车轨迹</view>
+  <view  class='traceData'><text>行驶了</text><text wx:if='{{hourShow}}'>{{hour}}小时</text><text>{{time}}分钟，</text>
+        <text>行驶了{{distance}}公里</text > 
+  </view >
+<button class='btn'  bindtap='backPage'>完成</button>
+</view>
+</view>

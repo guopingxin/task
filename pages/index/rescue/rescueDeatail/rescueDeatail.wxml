@@ -1,0 +1,18 @@
+<!--pages/index/claimsDetail/claimsDetail.wxml-->
+<!--pages/index/claimsDetail/claimsDetail.wxml-->
+<import src="../../../template/top1.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}'>
+  <import src="../../../template/step/step.wxml" />
+  <import src="../../../template/getDataDetail/getDataDetail.wxml" />
+  <view class='containerDe'>
+    <template is="detailXml" data="{{detail,details}}" />
+    <view class="zan-panel">
+      <view class="zan-cell zan-cell">
+        <view class="zan-cell__bd">
+          <template is="zan-steps" data="{{ type: 'vertical', hasDesc: true, steps }}"></template>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

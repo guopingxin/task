@@ -1,0 +1,199 @@
+/* pages/index/adminPeople/adminPeople.wxss */
+.add{
+  float: right;
+  font-weight: bold;
+  color:#FF4444;
+  font-size:12px;
+  }
+  .content{
+    width:95%;
+    margin: 0px auto;
+  }
+  .eachData{
+    font-size: 14px;
+  }
+  .state{
+    width:60px;
+    line-height: 20px;
+    font-size: 12px;
+    padding: 0px 5px;
+    border-radius: 3px;
+    text-align:center;
+    background: #3891F8;
+    color:#fff;
+    float: right;
+  }
+  .classify{
+    font-size:12px;
+    color:#aaa;
+    padding: 2px 0px;
+  }
+  .update{
+    padding: 5px 0px;
+    font-size: 12px;
+    color:#3891f8;
+    float: right;
+  }
+  .carHostModal,.fordiddelModal,.editlModal,.deleteModal{
+    width:100%;
+    height: 100%;
+    position: fixed;
+    top:0px;
+    left:0px;
+    background: rgba(160,160,160,0.6);
+    color:#555;
+  }
+  .carHostcontent{
+    width:70%;
+    background: rgba(255,255,255,1);
+    margin:150px auto;
+    border-radius: 10px;
+  }
+  .confirm{
+    padding: 20px 20px 40px;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+  }
+  .cancel{
+    display: inline-block;
+    width:49%;
+    text-align: center;
+    font-size: 16px;
+    padding: 16px 0px;
+  }
+  .yes{
+    color:green;
+    border-left: 1px solid #ddd;
+  }
+  .eachInfor{
+    padding: 10px 0px;
+    border-bottom: 1px solid #ddd;
+  }
+ .tit{
+    position: fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    background: linear-gradient(#3891F8, rgb(164, 205, 253));
+    z-index: 2
+  }
+  .titIcon{
+  display: inline-block;
+  width:16%;
+  height: 100%;
+  text-align: right;
+}
+.iconAdd{
+  display: inline-block;
+  width:16%;
+  height: 16%;
+  margin-right:20px;
+  text-align: right;
+}
+.iconAdd image{
+  width:20px;
+  height: 20px;
+  vertical-align: middle;
+}
+.search{
+  display: inline-block;
+  margin-left:10px;
+  width:78%;
+  height: 30px;
+  line-height: 30px;
+  letter-spacing: 2px;
+
+  font-weight: normal;
+  background: #fff;
+  border-radius: 50px;
+  position: relative;
+}
+
+.search1{
+  display: inline-block;
+  margin-left:10px;
+  width:96%;
+  height: 30px;
+  line-height: 30px;
+  letter-spacing: 2px;
+
+  font-weight: normal;
+  background: #fff;
+  border-radius: 50px;
+  position: relative;
+}
+  .section{
+    margin-top:46px;
+  }
+  .taskClassify{
+     display: inline-block;
+     background: #F5F9FC;
+     width:100%;
+   }
+    .taskClassify view{
+    display: inline-block;
+    width:90%;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    color:#555555;
+    text-align: left;
+    margin-left: 20px;
+  }
+.orderId{
+  font-weight: bold;
+}
+.classify_tit{
+  padding-top:4px;
+}
+.classify_tit view{
+  display:inline-block;
+  width:50%;
+  text-align: center;
+  height:30px;
+  line-height:30px;
+  font-size: 16px;
+}
+.check{
+  width:100%!important;
+  color:#3891F8;
+  
+}
+.check text{
+  border-bottom: 3px solid #3891F8;
+  display: inline-block;
+  width:60%;
+}
+.loss{
+  color:100%!important;
+}
+.classify_p {
+  margin-top:20px;
+  margin-bottom: 20px;
+}
+.classify_p1{
+  position: relative;
+  left:50%;
+}
+.classify_p view{
+    display: inline-block;
+    font-size: 12px;
+    width: 33%;
+    text-align: center;
+    line-height: 24px;
+    height: 24px;
+}
+.all{
+  border-radius: 20px;
+  background: #3891F8;
+  color:#fff;
+  width: 56%!important;
+}
+.each{
+  color: #ccc;
+  height: 22px!important;
+  line-height: 22px!important;
+  border:1rpx solid #ccc;
+  border-radius: 20px;
+  width: 56%!important;
+}

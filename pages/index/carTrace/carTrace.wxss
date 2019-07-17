@@ -1,0 +1,86 @@
+/* pages/test/test.wxss */
+button{
+  margin:20px 0px;
+}
+
+.content {
+  margin-top: 100rpx;
+  font-size: 24rpx;
+}
+ 
+.sliderContent{
+  
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 50rpx;
+  padding-left: 60rpx;
+  width: 425rpx;
+  box-sizing: border-box;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 60rpx;
+  background-color: #fff;
+  color: #289adc;
+  box-shadow: 0px 4px 6px 0px rgba(37, 114, 219, 0.3);
+  background: #3891F8;
+}
+ 
+.sliderContent .input {
+  line-height: 70rpx;
+  height: 70rpx;
+  box-sizing: border-box;
+  padding-left: 40rpx;
+  width: 250rpx;
+}
+ 
+.input-placeholder {
+  text-align: center;
+  color: #289adc;
+}
+ .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150rpx;
+  border-radius: 60rpx;
+  text-align: center;
+  background-color: #7f7f7f;
+  color: #fff;
+  box-shadow: 0px 4px 6px 0px rgba(37, 114, 219, 0.3);
+}
+.InforDe{
+  text-align: center;
+}
+.InforDe{
+  font-size: 12px;
+  text-align: center;
+}
+radio{
+  display:inline-block;
+  width:50%;
+}
+.traceData{
+  font-size: 12px;
+  color:#3891F8;
+}
+.modalBtn{
+  margin-top:16px;
+  padding:10px 0px;
+  font-size: 14px;
+  border-top:1px solid #bbb;
+}
+.traceData{
+  text-align: center;
+}
+.content1{
+  width:80%;
+  margin:0px auto;
+
+}
+radio-group{
+  text-align: center;
+}
+.btn{
+  background: #3891F8;
+  color:#fff;
+}

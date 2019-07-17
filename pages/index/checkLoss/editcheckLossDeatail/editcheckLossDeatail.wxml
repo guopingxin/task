@@ -1,0 +1,245 @@
+<!--pages/index/claimsDetail/claimsDetail.wxml-->
+<import src="../../../template/top1.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}'>
+<import src="../../template/step/step.wxml" />
+<form bindsubmit="formSubmit">
+  <view class='containerDe'>
+    <view class='sectionDe'>
+      <view class='tit'>
+        <text>基本信息</text>
+      </view>
+      <view class='contentDe'>
+        <view class='eachInforDe'>
+          <label class='inforLabel'>业务编号</label>
+          <text>{{detail.survey_no}}</text>
+        </view>
+        <view class='eachInforDe'>
+          <label class='inforLabel'>案件类型</label>
+          <radio-group name='classify' style='display:inline-block' bindchange='radioChage'>
+            <radio value='0' checked='{{detail.type==0}}'>查勘</radio>
+            <radio value='1' checked='{{detail.type==1 || detail.type==2}}'>定损</radio>
+          </radio-group>
+        </view>
+
+        <view class='eachInforDe' hidden='{{isdamageShow}}'>
+            <radio-group class='damage'  bindchange='radioChage1'>
+              <radio value='0' checked='{{ifdamage}}'>三责</radio>
+              <radio value='1' checked='{{!ifdamage}}'>标的</radio>
+            </radio-group>
+        </view>
+
+        <view class='eachInforDe'>
+            <label class='inforLabel'>查勘员</label>
+            <view class='fixedinfo'>{{surveyor}}</view>
+          </view>
+
+          <view class='eachInforDe'hidden='{{jobnumber}}'>
+            <label class='inforLabel'>工号</label>
+            <view class='fixedinfo'>{{usernumber}}</view>
+          </view>
+
+          <view class='eachInforDe' hidden='{{pingandate}}'>
+            <label class='inforLabel'>查勘日期</label>
+            
+            <picker mode = "date" start="{{startYear}}"
+    end="{{endYear}}"  bindchange="bindChangedate" >
+              <view>{{detail.survey_date}}</view>
+            </picker>
+ 
+          </view>
+
+          <view class='eachInforDe' wx:if="{{istaskvalue}}">
+            <label class='inforLabel'>任务类型</label>
+            <picker mode="selector" range="{{taskmodes}}" value="{{2}}" bindchange="bindChangetask">
+            <view>{{detail.task_type}}</view>
+            </picker>
+          </view>
+
+          <view wx:else  class='eachInforDe' >
+          <label class='inforLabel'>任务类型</label>
+            <picker mode="selector" range="{{taskmodes1}}" value="{{2}}" bindchange="bindChangetask1">
+            <view>{{detail.task_type}}</view>
+            </picker>
+          </view>
+
+
+          <view class='eachInforDe' hidden='{{taipingdate}}'>
+            <label class='inforLabel'>报案时间</label>
+            <picker  mode = "date" start="{{startYear}}"
+    end="{{endYear}}"  bindchange="bindChangedate1" >
+              <view>{{detail.report_date}}</view>
+            </picker>
+          </view>
+
+
+          <view class='eachInforDe' hidden='{{sendtime}}'>
+            <label class='inforLabel'>派工时间</label>
+            <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+            <view>
+            {{detail.send_time}}
+            </view>
+            </picker>
+          </view>
+
+
+          <view class='eachInforDe' hidden='{{riskdamage}}'>
+            <label class='inforLabel'>出险/定损地点</label>
+
+            <view class='probedate1'>
+              <input value='{{title}}' bindblur='riskdamageblur' bindfocus='riskdamagefocus' style='color:{{riskdamageerror}}' placeholder='请输入出险/定损地点' name="riskdamage" id="riskdamage"/>
+            </view>
+
+            <view class='location' bindtap='risk'>
+            <image src="/pages/img/location.png" />
+            </view>
+            
+          </view>
+
+          <view class='eachInforDe' hidden='{{taipingcase}}'>
+            <label class='inforLabel'>案件类型</label>
+            <picker mode="selector" range="{{casemodes}}" value="{{2}}" bindchange="bindChangecase">
+            <view>{{detail.case_type}}</view>
+            </picker>
+
+          </view>
+
+
+          <view class='eachInforDe' hidden='{{itarea}}'>
+          <label class='inforLabel'>区域</label>
+          <picker mode="selector" value='{{2}}' range='{{itareas}}' bindchange='bindChangeitarea'>
+            <view>{{detail.are}}</view>
+          </picker>
+
+          </view>
+
+          <view class='eachInforDe' hidden='{{pinganarea}}'>
+            <label class='inforLabel'>区域</label>
+            <picker mode = "multiSelector" range="{{multiArray}}" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}"  >
+              <view>{{detail.are}}</view>
+            </picker>
+
+          </view>
+
+          <view class='eachInforDe' hidden='{{pinganperiod}}'>
+            <label class='inforLabel'>派工时间段</label>
+
+            <picker mode = "multiSelector" range="{{multiArray1}}" bindchange="bindMultiPickerChange1" bindcolumnchange="bindMultiPickerColumnChange1" value="{{multiIndex1}}"  >
+
+            <view>{{detail.send_date}}</view>
+            
+            </picker>
+
+          </view>
+
+          <view class='eachInforDe' hidden='{{itWarranty}}'>
+            <label class='inforLabel'>保单号</label>
+
+            <!-- <text class='redInfor' wx:if="{{baodanIdErr}}">!保单号不能为空</text> -->
+            <!-- bindfocus='cancelRed' value='{{caseInfor[0].carId}}'  -->
+            <!-- <block wx:else> -->
+            <view class='probedate1'>
+            <input type='text' name='warrantyId' id='warrantyId' placeholder='请输入保单号' value='{{detail.policy_no}}' bindfocus='probefocus' bindblur='probeblur'/>
+            </view>
+
+          </view>
+
+          <view class='eachInforDe' hidden='{{itagency}}'>
+            <label class='inforLabel'>承保机构</label>
+
+            <!-- <text class='redInfor' wx:if="{{chengbaoIdErr}}">!承保机构不能为空</text> -->
+            <!-- <block wx:else> -->
+            <view class='probedate1'>
+            <input type='text' name='agencyId' id='agencyId' placeholder='请输入承保机构' value='{{detail.ins_org}}' bindfocus='agencyfocus' bindblur='agencyblur'/>
+            </view>
+              
+            <!-- </block> -->
+          </view>
+
+
+        <!-- <view class='eachInforDe'>
+          <label class='inforLabel'>被保人</label>
+          <text class='redInfor' wx:if='{{casePersonErr}}'>！</text>
+          <input class='inforTestDetail' id='casePerson' name='casePerson' type='text' value='{{detail.recognizee}}' bindfocus='cancelRed' />
+        </view> --> 
+        <!-- bindtap='link' -->
+        <view class='eachInforDe'  id='host' data-num='17784562578'>
+          <label class='inforLabel'>报案号</label>
+          <!-- <text class='redInfor' wx:if="{{report_noErr}}">！</text> -->
+          <input class='inforTestDetail' name='report_no' id='report_no' placeholder='请输入报案号' type='text' value='{{detail.report_no}}' bindfocus='casefocus' bindblur='caseblur' style='color:{{caseerror}}'/>
+        </view>
+
+        <view class='eachInforDe' hidden='{{itcarid}}'>
+          <label class='inforLabel'>车牌号码</label>
+          <!-- <text class='redInfor' wx:if="{{carIdErr}}">！</text> -->
+          <input class='inforTestDetail' id='carId' name='carId' type='text' value='{{detail.car_no}}' bindfocus='caridfocus'  bindblur='caridblur'  style='color:{{carerror}}'
+placeholder='请输入车牌号'/>
+        </view>
+
+        <view class='eachInforDe' hidden='{{sendworkers}}'>
+            <label class='inforLabel'>派工人</label>
+            
+            <view class='probedate1'>
+              <input  name="sendusername"  value='{{detail.send_user}}' placeholder='请输入派工人' bindfocus='sendworkerfocus' bindblur='sendworkerblur'  style='color:{{sendworkererror}}'/>
+            </view>
+                         
+            
+        </view>
+
+        <!-- <view class='eachInforDe'>
+          <label class='inforLabel'>报案电话</label>
+          <text class='redInfor' wx:if="{{caseMobileErr}}">！</text>
+          <input class='inforTestDetail' id='caseMobile' name='caseMobile' type='text' value='{{detail.mobile}}' bindfocus='cancelRed' />
+        </view> -->
+
+        <view class='eachInforDe'>
+          <label class='inforLabel'>保险公司</label>
+          <picker bindchange="bindPickerChange" name='mobile' value="{{index1}}" range="{{array}}">
+            <view class="weui-input">{{array[index1]}}</view>
+          </picker>
+        </view>
+
+
+        <!-- <view class='eachInforDe'>
+          <label class='inforLabel'>预估金额</label>
+          <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+          <input class='inforTestDetail' id='money' name='money' type='text' value='{{detail.money}}' bindfocus='cancelRed' />
+        </view> -->
+
+
+        <view class='eachInforDe'>
+          <label class='inforLabel'>备注</label>
+          <text class='redInfor' wx:if="{{remarkErr}}">！</text>
+          <textarea wx:if='{{detail.remark=="undefined"}}' name='remark' id='remark' style='line-height:22px;border:1px solid #ddd;margin:0px auto;width:98%;height:150px;overflow:scroll' maxlength='123456789'></textarea>
+
+          <textarea wx:if='{{detail.remark!="undefined"}}' name='remark' id='remark' style='line-height:22px;border:1px solid #ddd;margin:0px auto;width:98%;height:150px;overflow:scroll' maxlength='123456789' value='{{detail.remark}}'></textarea>
+
+        </view>
+
+      </view>
+      <view class='tit' wx:if='{{third.length>0}}'>
+        <text>三者信息</text>
+      </view>
+      <view class='third_content' wx:if='{{third.length>0}}'>
+        <view class='third_cell' wx:for='{{third}}' wx:for-item='item'>
+          <view class='third_tit'>三者信息{{index+1}}</view>
+          <view class='eachInforDe'>
+            <label class='inforLabel'>联系电话</label>
+            <input class='inforTestDetail' id='mobile{{index+1}}' name='mobile{{index+1}}' type='text' value='{{item.phone}}' bindfocus='cancelRed' />
+          </view>
+          <view class='eachInforDe'>
+            <label class='inforLabel'>车牌号</label>
+            <text class='redInfor' wx:if='{{casePersonErr}}'>！</text>
+            <input class='inforTestDetail' id='car{{index+1}}' name='car{{index+1}}' type='text' value='{{item.car_no}}' bindfocus='cancelRed' />
+          </view>
+         
+        </view>
+      </view>
+       <view class='eachInforDe'> 
+            <button formType="submit" style='background:#44CB5A;color:#fff' wx:if='{{!allOver}}'>确 认</button>
+            <button formType="submit" class='btn' style='background:#BBBBBB;color:#fff' wx:if='{{allOver}}'>确 认</button>
+          </view>
+    </view>
+  </view>
+</form>
+</view>

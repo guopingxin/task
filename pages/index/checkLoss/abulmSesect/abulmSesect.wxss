@@ -1,0 +1,15 @@
+/* pages/index/checkLoss/abulmSesect/abulmSesect.wxss */
+@import '../checkLossDeatail/checkLossDeatail.wxss';
+.imgCell{
+ height: 60px;
+}
+.plusPic{
+  width: 80px;
+  height: 60px;
+}
+.taskOver{
+  width:80%;
+  background: #3891F8;
+  color:#fff;
+  border-radius:5px;
+  }

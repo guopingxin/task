@@ -1,0 +1,11 @@
+/* pages/index/addphotoPublic/addphotoPublic.wxss */
+@import '../addphoto/addphoto.wxss';
+.btnContain{
+  width:50%!important;
+}
+.eachClassify{
+  width:50%;
+}
+.allClassify {
+  height: 50px;
+}

@@ -1,0 +1,89 @@
+{
+  "pages": [
+    
+    
+    "pages/login/login",
+
+    "pages/index/checkLoss/addcheckLoss/addcheckLoss",
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/mine/updateData/updateData",
+    "pages/index/allot/allot",
+    "pages/index/carTrace/carTrace",
+    "pages/editPsw1/editPsw1",
+    "pages/mine/allData/allData",
+    "pages/mine/toDataOrder/toDataOrder",
+    "pages/mine/sign/sign",
+    "pages/mine/sign/leave/leave",
+    "pages/mine/allOder/allOder",
+    "pages/mine/allOder/orderDetail/orderDetail",
+    "pages/editPsw/editPsw",
+    "pages/mobilePsw/mobilePsw",
+    "pages/index/addProgress/addProgress",
+    "pages/index/showTrace/showTrace",
+    "pages/index/addphoto/addphoto",
+    "pages/index/addphotoPublic/addphotoPublic",
+    "pages/index/addphotoPay/addphotoPay",
+    "pages/index/fixCar/fixCar",
+    "pages/index/fixCar/addFixCar/addFixCar",
+    "pages/index/fixCar/editFixCar/editFixCar",
+    "pages/index/fixCar/fixcarDtail/fixcarDtail",
+    "pages/index/fixCar/addFixCar/addbrand/addbrand",
+    "pages/index/fixCar1/fixCar",
+    "pages/index/fixCar1/addFixCar/addFixCar",
+    "pages/index/fixCar1/editFixCar/editFixCar",
+    "pages/index/fixCar1/fixcarDtail/fixcarDtail",
+    "pages/index/fixCar1/addFixCar/addbrand/addbrand",
+    "pages/index/checkLoss/checkLoss",
+    "pages/index/checkLoss/editcheckLossDeatail/editcheckLossDeatail",
+    "pages/index/checkLoss/abulmSesect/abulmSesect",
+    "pages/index/checkLoss/fix/fix",
+    "pages/index/checkLoss/checkLossDeatail/checkLossDeatail",
+    "pages/template/step/step",
+    "pages/template/step1/step1",
+    "pages/logs/logs",
+    "pages/index/rescue/rescue",
+    "pages/index/rescue/addRescue/addRescue",
+    "pages/index/rescue/editRescue/editRescue",
+    "pages/index/rescue/rescueDeatail/rescueDeatail",
+    "pages/index/trailer/trailer",
+    "pages/index/trailer/addTrailer/addTrailer",
+    "pages/index/trailer/editTrailer/editTrailer",
+    "pages/index/trailer/trailerDeatail/trailerDeatail",
+    "pages/index/checkLoss/checkLocation/checkLoation"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#44CB5A",
+    "navigationBarTitleText": "作业员",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "navigationStyle": "custom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "根据地理位置将为您提供最佳服务"
+    }
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#3891F8",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "pages/img/carlifeoff@2x.png",
+        "selectedIconPath": "pages/img/carlifeon@2x.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "pages/img/mineoff@2x.png",
+        "selectedIconPath": "pages/img/mineon@2x.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

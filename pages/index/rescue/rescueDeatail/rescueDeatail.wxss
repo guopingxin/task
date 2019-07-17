@@ -1,0 +1,16 @@
+
+@import '../../trailer/trailerDeatail/trailerDeatail.wxss';
+.inforLabelArea{
+display: inline-block;
+width:22%;
+vertical-align: top;
+ height:32px;
+line-height: 32px;
+}
+.inforTestArea{
+  display: inline-block;
+  width:57%;
+  height:32px;
+  max-height: 64px;
+  line-height: 32px;
+}

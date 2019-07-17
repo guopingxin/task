@@ -1,0 +1,135 @@
+/* pages/mine/mine.wxss */
+
+.container {
+  text-align: center;
+  font-size: 0px;
+}
+
+.header {
+  position: relative;
+  height: 180px;
+}
+
+.header image {
+  width: 100%;
+  height: 180px;
+}
+
+.avatar_cell {
+  position: absolute;
+  left: 0px;
+  bottom: -42px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+.avatar {
+  position: relative;
+  display: inline-block;
+  padding: 5px;
+  background: #fff;
+  width:75px;
+  height: 75px;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 0px 5px 10px 1px #ecebeb;
+}
+
+.avatar_cell image {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+.user_name{
+  font-size: 18px;
+  margin-top: 60px;
+  color:rgb(51,51,51);
+}
+.section{
+   margin-top: 98px;
+}
+
+.each_cell {
+  border-bottom: 1rpx solid #eee;
+  text-align: left;
+}
+
+.icon_cell {
+  margin-left: 18px;
+  vertical-align: middle;
+  display: inline-block;
+  width: 21px;
+  height: 24px;
+  text-align: left;
+}
+
+.tab_text {
+  margin-left: 10px;
+  vertical-align: middle;
+  text-align: left;
+  font-size: 15px;
+  display: inline-block;
+  color: #4d4d4d;
+}
+
+.icon_cell image {
+  vertical-align: top;
+  width: 21px;
+  height: 24px;
+}
+
+.modal {
+  text-align: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background: rgba(80, 88, 80, 0.5);
+}
+
+.modalContent {
+  background: #fff;
+  margin-top: 40%;
+  text-align: left;
+  display: inline-block;
+  width: 70%;
+  border-radius: 10px;
+  color: #444;
+}
+
+.cancelTop {
+  border-top: 1px solid #bbb;
+}
+
+.data {
+  padding: 18px;
+}
+.modal{
+  z-index: 3
+}
+
+.cancel {
+  display: inline-block;
+  width: 49%;
+  text-align: center;
+  padding: 10px 0px 10px 0px;
+  border-left: 1px solid #bbb;
+}
+
+.yes {
+  color: #21961a;
+}
+.each_cell .formIdBtn1{
+ background: #fff;
+  height: 60px;
+  line-height: 60px;
+   text-align: left;
+  padding: 0px;
+}
+.each_cell .formIdBtn1::after{
+  border:none;
+
+}

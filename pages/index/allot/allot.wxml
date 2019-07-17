@@ -1,0 +1,27 @@
+<!--pages/index/adminPeople/adminPeople.wxml-->
+<import src="../allotSort/allotSort.wxml"/> 
+<import src="../../template/top1.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+  <form bindsubmit="formSubmit">
+<view class='{{container}}'>
+  <view class='tit' style='padding-right:18px;top:{{titTop}}'>
+  <view class='search'>
+    <view class='searchIcon zan-icon zan-icon-search'></view>
+    <input class='searchInput' type='text' placeholder='搜索人员'/>
+    </view>
+    <button style='float:right;margin-right:10px;color:#fff;font-size:14px;background:none' formType="submit">确认</button>
+  </view>
+
+  <view class='section'>
+   <view class='redInfor' wx:if='{{pNull}}' style='font-size:12px;'>请选择作业人员</view>
+  <radio-group name='task'>
+    <template is="wxSortPickerView" data="{{wxSortPickerData}}"/>
+    </radio-group>
+  </view>
+</view>
+ </form> 
+ <scroll-view style="width:20px;top:{{paddingTop}};height: {{wxSortPickerData.view.scrollHeight}}px;" class="wxSortPickerViewTemTags">
+        <block wx:for="{{['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#']}}" wx:for-item="item" wx:key=""> 
+            <view bindtap="wxSortPickerViewTemTagTap" data-tag="{{item}}" class="wxSortPickerViewTemTag">{{item}}</view>
+        </block>
+    </scroll-view>

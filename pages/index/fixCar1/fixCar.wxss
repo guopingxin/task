@@ -1,0 +1,9 @@
+@import '../checkLoss/checkLoss.wxss';
+.eachPos{
+  position: relative;
+}
+.states_cell{
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+}

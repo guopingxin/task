@@ -1,0 +1,61 @@
+/* pages/index/checkLoss/editcheckLossDeatail/editcheckLossDeatail.wxss */
+picker{
+  display: inline-block;
+  width:70%;
+}
+.radio-group{
+  display: inline-block;
+   width:70%;
+}
+.radio-group radio{
+   display: inline-block;
+   width:50%;
+}
+.third_tit{
+  padding:10px;
+  color:rgb(107, 175, 252);
+}
+.third_cell .eachInforDe{
+  border:none;
+  width: 70%
+}
+.damage{
+  margin-left: 30%;
+}
+radio-group{
+  width: 70%
+}
+
+radio{
+  display:inline-block;
+  width:50%;
+}
+.fixedinfo{
+  display: inline-block
+}
+
+.probedate1{
+  display: inline-block;
+  width: 60%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.location{
+  width: 10%;
+  display: inline-block;
+   
+}
+
+.location image{
+  width: 20px;
+  height: 20px;
+  position: relative;
+  left: 4%;
+  top:5px;
+}
+
+
+
+
+

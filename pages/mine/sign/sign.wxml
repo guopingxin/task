@@ -1,0 +1,49 @@
+<!--pages/index/sign/sign.wxml-->
+<import src="../../template/top1.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}' wx:if='{{!signResult}}'>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%;">
+    <cover-view class='data-cell'>
+      <cover-image src='../../img/icon_time@2x.png'></cover-image>
+      <cover-view>{{dataShow}}</cover-view>
+    </cover-view>
+  </map>
+
+  <view class=''></view>
+  <view>
+    <view class='address_cell'>
+      <view class='address'>地址：{{locationTextShow}}</view>
+      <view class='image_cell'>
+        <image src='{{theImage}}' wx:if='{{theImage}}' class='upload' bindtap='upload'></image>
+        <view style='display:inline-block' wx:else class='upload' bindtap='upload'>
+          <image src='../../img/icon-camera@2x.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='tit'>
+      <text class='redInfor' style='margin-left:10px;' wx:if='{{redInfor}}'>请上传照片!</text>
+    </view>
+  </view>
+  <button class='btn' bindtap='signUp'>{{signText}}</button>
+  <button class='btn' bindtap='toLeave' style='background: #DBDBDB;'>申请请假</button>
+</view>
+<view class='modal' wx:if='{{locationModal}}' style='width:100%;height:100vh;background:rgba(110,110,110,0.5);position:fixed;top:0px;left:0px;'>
+  <view class='modalContent' style='margin:0px auto;margin-top:40%;background:#fff;width:80%;line-height:60px;'>
+    <view class='data'>请开启地理位置授权</view>
+    <view class='cancelTop' style='text-align:center'>
+      <view class='cancel yes' bindtap='logOutL'>
+        <button open-type="openSetting" bindopensetting="handler">去打开</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='modal' wx:if='{{signResult}}' style='width:100%;height:100vh;background:rgba(110,110,110,0.5);position:fixed;top:0px;left:0px;'>
+  <view class='modalContent' style='background:{{signStatus==0?"url(https://612d-a-data-1a3ebf-1257782233.tcb.qcloud.la/task/pic_work@2x.png?sign=7b09b2e54c123c0524e41b2a54d51160&t=1546501524)":"url(https://612d-a-data-1a3ebf-1257782233.tcb.qcloud.la/task/pic_Today@2x.png?sign=52ee82bc2b05fd67a8add629fe1e799b&t=1546501681)"}};background-size:100% 100%'>
+    <view class='tiem-cell'>
+      <text wx:if='{{signStatus==0}}'>上班</text>
+      <text wx:else>下班</text>
+      <text>{{timeNow}}</text>
+    </view>
+    <view class='btn-know' bindtap='closeModalSign'>我知道了</view>
+  </view>
+</view>

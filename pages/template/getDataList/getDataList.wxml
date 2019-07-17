@@ -1,0 +1,75 @@
+<!--pages/template/getDataList/getDataList.wxml-->
+<template name="listXml">
+  <view class='pageMinHeight' bindtap="handletap" bindtouchstart="" bindtouchmove="" bindtouchend="">
+    <view class='tit' style='top:{{titTop}}'>
+      <view class='search'>
+        <view class='searchIcon zan-icon zan-icon-search'></view>
+        <input class='searchInput' type='text' value='{{keyWordsTemp}}' bindinput='toChoose' placeholder='搜索业务' />
+        <view class='zan-icon zan-icon-clear' bindtap='cancelSearch' style='font-size:14px;color:#A3A3A3' wx:if='{{allData.cancelSearchIcon}}'></view>
+      </view>
+       <!-- wx:if='{{allData.opratorRank==1}}' -->
+      <view class='titIcon' bindtap='toAddAgency'>
+        <form bindsubmit='submitFormId' report-submit='true'>
+          <button form-type='submit' style='display:inline-block;text-align:right;height:24px;vertical-align:middle' hover-class="none" class='formIdBtn'>
+            <view class='icon iconAdd'>
+              <image src='../../img/add.png'></image>
+            </view>
+          </button>
+        </form>
+      </view>
+    </view>
+    <view class='section'>
+      <!-- <view class='taskClassify' wx:if='{{allData.opratorRank==1}}'>
+  <view style='background:#F5F9FC' class='{{allData.iconTask}}'> {{allData.theModule}}</view>
+</view> -->
+      <view class='classify_tit' wx:if='{{allData.opratorRank==1}}'>
+        <view>
+          <view class='{{allData.active_tit}}' bindtap='toAll'>
+            <text>我的业务</text> </view>
+        </view>
+        <view>
+          <view class='{{allData.noactive_tit}}' bindtap='toEach'>
+            <text>小组业务</text>
+          </view>
+        </view>
+      </view>
+      <view class='content'>
+        <view class='eachInfor' wx:for='{{allData.listAtrr}}' wx:for-index="idx" wx:for-item="itemName">
+          <form bindsubmit='submitFormId' report-submit='true'>
+            <view class='eachData' id="{{itemName.id}}" bindtap='toDetail'>
+              <button form-type='submit' hover-class="none" class='formIdBtn'>
+                <view>
+                  <view class='orderId'>
+                    <label>订单号:</label>
+                    <text>{{itemName.rescue_no||itemName.accident_no||itemName.used_no||itemName.sale_no||itemName.claims_no||itemName.maintain_no||itemName.yearbook_no||itemName.trailer_no||itemName.rescue_no||itemName.risk_no||itemName.push_no}} </text>
+                  </view>
+                  <text wx:if='{{itemName.owner_name||itemName.recognizee||itemName.name}}'>{{itemName.owner_name||itemName.recognizee||itemName.name}} / </text>
+                  <text wx:if='{{itemName.car_no}}'>{{itemName.car_no}} / </text>
+                  <text wx:if='{{itemName.mobile}}'>{{itemName.mobile}}</text>
+                  <text class='state' wx:if='{{itemName.status==0}}'>待审核</text>
+                  <text class='state' style='background:red' wx:if='{{itemName.status==1}}'>审核失败</text>
+                  <text class='state' wx:if='{{itemName.status==2}}'>审核成功</text>
+                  <text class='state' wx:if='{{itemName.status==3}}'>已分配</text>
+                  <text class='state' wx:if='{{itemName.status==4}}'>进行中</text>
+                  <text class='state' wx:if='{{itemName.status==5}}'>已取消</text>
+                  <text class='state' wx:if='{{itemName.status==6}}'>已完成</text>
+                </view>
+                <view class='classify'>
+                  <text>{{itemName.add_time}}</text>
+                </view>
+              </button>
+            </view>
+            <view>
+            </view>
+          </form>
+        </view>
+      </view>
+    </view>
+    <view class='gifCell' wx:if='{{allData.gif}}'>
+      <image src='../../img/loading.gif' class='gif'></image>
+    </view>
+    <view class='moredata' wx:if='{{allData.moredata}}'>
+      <text>没有更多数据~</text>
+    </view>
+  </view>
+</template>

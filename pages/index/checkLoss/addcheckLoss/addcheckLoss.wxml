@@ -1,0 +1,659 @@
+<!--pages/index/addPeople/addPeople.wxml-->
+<import src="../../../template/top1.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}'>
+  <view class='section'>
+    <view class='content'>
+      <view class='firstPage' wx:if='{{firstPage}}'>
+        <form bindsubmit='analyze'>
+          <view class='eachInfor'>
+            <label>粘贴短信</label>
+            <textarea name='infor' bindfocus='writing' style='line-height:22px;border:1px solid #ddd;margin:0px auto;width:98%;height:200px;overflow:scroll' maxlength='9999999' placeholder='请粘贴短信' bindblur='ff'></textarea>
+            <view class='redirect' bindtap='tosecondPagere'>直接填写</view>
+            <view wx:if='{{tip}}' class='redInfor'>请粘贴短信</view>
+          </view>
+          <button class='btn' formType="submit">解析短信</button>
+        </form>
+      </view>
+      <view class='secondPage' wx:if='{{secondPage}}' style="background:{{background}};height:100vh;width:100%">
+        <view wx:if='{{cannot}}' class='redInfor'>您输入的短信无法解析，请自行输入</view>
+
+        <form bindsubmit='submitCheck'>
+
+          <view class='eachInfor'>
+            <label>类型</label>
+            <radio-group name='classify' bindchange='radioChage'>
+              <radio value='0' checked='{{!ifLoss}}'>查勘</radio>
+              <radio value='1' checked='{{ifLoss}}'>定损</radio>
+
+            </radio-group>
+          </view>
+
+          <view class='eachInfor' hidden='{{isdamageShow}}'>
+            <radio-group class='damage'  bindchange='radioChage1'>
+              <radio value='0' checked='{{ifdamage}}'>三责</radio>
+              <radio value='1' checked='{{!ifdamage}}'>标的</radio>
+            </radio-group>
+          </view>
+
+          <view class='eachInfor' id='insurance'>
+            <label>保险公司</label>
+            <picker bindchange="bindPickerChange" name='insurance' value="index1" range="{{array}}">
+              <view class="weui-input">{{array[index1]}}</view>
+            </picker>
+          </view>
+
+          
+          <view class='eachInfor' id='insurance'>
+            <label>查勘员</label>
+            <view class='probedate'>{{surveyor}}</view>
+          </view>
+
+          <view class='eachInfor' id='insurance' hidden='{{jobnumber}}'>
+            <label>工号</label>
+            <view class='probedate'>{{usernumber}}</view>
+          </view>
+
+          <view class='eachInfor' id='insurance' hidden='{{sendworkers}}'>
+            <label>派工人</label>
+            <view class='probedate' style='color:{{paiworkererror}}'>
+              <input   name="sendusername"  disabled="{{paiworer}}" value='{{surveyor1}}' placeholder='请输入派工人' bindfocus='paiworker' />             
+            </view>
+          </view>
+
+          <view class='eachInfor' id='insurance' hidden='{{pingandate}}'>
+            <label>查勘日期</label>
+            <!-- <picker bindchange="bindPickerChange" name='insurance' value="index1" range="{{array}}">
+              <view class="weui-input">{{array[index1]}}</view>
+            </picker> -->
+            <!-- <view bindtap='dateisShow' class='probedate'>{{year}}/{{month}}/{{day}}</view>
+            <view hidden='{{dateisShow}}'  class='dateform'>
+              <view class='selectyear'>
+              <text>选择查勘日期</text>
+              <text class='selectyear-text'>{{year}}/{{month}}/{{day}}</text>
+              </view>
+              <view class="year-m-d">
+                <view class="year">年</view>
+                <view class="year">月</view>
+                <view class="year">日</view>
+              </view>
+
+            <picker-view style="width: 100%; height: 220rpx; text-align: center" value="{{value}}"   mask-class="date-mask" indicator-class="date-indicator" bindchange="bindChangedate" >
+            <picker-view-column>
+              <view wx:for="{{years}}">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+              <view wx:for="{{months}}">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+              <view wx:for="{{days}}">{{item}}</view>
+            </picker-view-column>
+
+            </picker-view>
+
+            <view class="timecancel" bindtap='timecancel'>取消</view>
+            <view class="timesure" bindtap='timesure'>确定</view>
+            
+            </view> -->
+            
+            <picker  mode = "date" value="{{date}}" start="{{startYear}}"
+    end="{{endYear}}"  bindchange="bindChangedate" >
+              <view wx:if="{{fir_date}}">{{year}}-{{month}}-{{day}}</view>
+              <view wx:else>{{date}}</view>
+            </picker>
+ 
+          </view>
+
+          <view class='eachInfor'>
+            <label>案件号</label>
+            
+            <view class='probedate' style='color:{{baoanerror}}'>
+            <input type='text'  name='report_no' id='report_no' placeholder='请输入案件号' value='{{caseInfor[0].numberId}}'   bindfocus='casefocus' bindblur='caseblur'/>
+            </view>
+          </view>
+
+          <view class='eachInfor' hidden='{{numberplate}}'>
+            <label>车牌号</label>
+            <!-- <text class='redInfor' wx:if="{{carIdErr}}">!车牌号不能为空</text> -->
+            <!-- bindfocus='cancelRed' value='{{caseInfor[0].carId}}' -->
+            <view class='probedate' style='color:{{cariderror}}'>
+              <input type='text' name='carId' id='carId' placeholder='请输入车牌号'  value='{{caseInfor[0].carId}}'   bindfocus='caridfocus' bindblur='caridblur'/>
+            </view>
+            
+          </view>
+
+          <view class='eachInfor' wx:if="{{istaskvalue}}">
+            <label>任务类型</label>
+            <!-- <text class='redInfor' wx:if="{{carIdErr}}"></text>
+            <input type='text' name='carId' id='carId' placeholder='请输入车牌号' bindfocus='cancelRed' value='{{caseInfor[0].carId}}' /> -->
+
+            <!-- <view bindtap='taskisShow' class='probedate'>{{taskmode}}</view> -->
+            <!-- <view class='dateform' hidden='{{task}}'> -->
+            <!-- <view class='selectyear'>
+            <text>任务类型</text>
+            <text class='selectyear-text'>{{taskmode}}</text>
+            </view> -->
+            <!-- <view class='year-m-d'>类型</view> -->
+            <!-- <picker-view style="width: 100%; height: 220rpx; text-align: center" value="{{taskvalue}}"   mask-class="date-mask" indicator-class="date-indicator" bindchange="bindChangetask">
+              <picker-view-column>
+                <view wx:for="{{taskmodes}}">{{item}}</view>
+              </picker-view-column>
+            </picker-view> -->
+
+            <picker mode="selector" range="{{taskmodes}}" value="{{index2}}" bindchange="bindChangetask">
+            <view style='color:{{taskcolor}}'>{{taskmodes[index2]}}</view>
+            <!-- <input placeholder='请选择任务类型' value='{{taskmodes[index2]}}'/> -->
+            </picker>
+          <!-- </view> -->
+
+          </view>
+
+          
+          <view class='eachInfor' wx:else>
+            <label>任务类型</label>
+            <!-- <text class='redInfor' wx:if="{{carIdErr}}"></text>
+            <input type='text' name='carId' id='carId' placeholder='请输入车牌号' bindfocus='cancelRed' value='{{caseInfor[0].carId}}' /> -->
+
+            <!-- <view bindtap='taskisShow' class='probedate'>{{taskmode1}}</view>
+            <view class='dateform' hidden='{{task}}'>
+            <view class='selectyear'>
+            <text>任务类型</text>
+            <text class='selectyear-text'>{{taskmode1}}</text>
+            </view>
+            <view class='year-m-d'>类型</view>
+            <picker-view style="width: 100%; height: 140px; text-align: center" value="{{taskvalue1}}"   mask-class="date-mask" indicator-class="date-indicator" bindchange="bindChangetask1">
+              <picker-view-column>
+                <view wx:for="{{taskmodes1}}">{{item}}</view>
+              </picker-view-column>
+            </picker-view>
+            <view class="timecancel" bindtap='taskcancel'>取消</view>
+            <view class="timesure" bindtap='tasksure1'>确定</view>
+          </view> -->
+
+
+          <picker mode="selector" range="{{taskmodes1}}" value="{{taskvalue1}}" bindchange="bindChangetask1">
+            <view style='color:{{taskcolor}}'>{{taskmodes1[taskvalue1]}}</view>
+            </picker>
+
+          </view>
+      
+          <view class='eachInfor' id='insurance' hidden='{{taipingdate}}'>
+            <label>报案时间</label>
+            
+            <!-- <view bindtap='dateisShow' class='probedate'>{{year}}/{{month}}/{{day}}</view>
+            <view hidden='{{dateisShow}}'  class='dateform'>
+              <view class='selectyear'>
+              <text>选择报案时间</text>
+              <text class='selectyear-text'>{{year}}/{{month}}/{{day}}</text>
+              </view>
+              <view class="year-m-d">
+                <view class="year">年</view>
+                <view class="year">月</view>
+                <view class="year">日</view>
+              </view>
+
+            <picker-view style="width: 100%; height: 140px; text-align: center" value="{{value}}"   mask-class="date-mask" indicator-class="date-indicator" bindchange="bindChangedate" >
+            <picker-view-column>
+              <view wx:for="{{years}}">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+              <view wx:for="{{months}}">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+              <view wx:for="{{days}}">{{item}}</view>
+            </picker-view-column>
+
+            </picker-view>
+
+            <view class="timecancel" bindtap='timecancel'>取消</view>
+            <view class="timesure" bindtap='timesure'>确定</view>
+            
+            </view> -->
+
+            <picker  mode = "date" value="{{date1}}" start="{{startYear}}"
+    end="{{endYear}}"  bindchange="bindChangedate1" >
+              <view wx:if="{{sec_date}}">{{year}}-{{month}}-{{day}}</view>
+              <view wx:else>{{date1}}</view>
+            </picker>
+            
+ 
+          </view>
+
+          <view class='eachInfor' hidden='{{sendtime}}'>
+            <label>派工时间</label>
+            <!-- <text class='redInfor' wx:if="{{carIdErr}}"></text>
+            <input type='text' name='carId' id='carId' placeholder='请输入车牌号' bindfocus='cancelRed' value='{{caseInfor[0].carId}}' /> -->
+
+            <!-- <view bindtap='jobtimeisShow' class='probedate'>{{year1}}/{{month1}}/{{day1}}  {{hour}}:{{min}}</view>
+
+            <view hidden='{{job}}'  class='dateform'>
+              <view class='selectyear'>
+              <text>选择派工时间</text>
+              <text class='selectyear-text'>{{year1}}/{{month1}}/{{day1}}  {{hour}}:{{min}}</text>
+              </view>
+              <view class="year-m-d">
+                <view class="year1">年</view>
+                <view class="year1">月</view>
+                <view class="year1">日</view>
+                <view class="year1">时</view>
+                <view class="year1">分</view>
+              </view>
+
+            <picker-view style="width: 100%; height: 140px; text-align: center" value="{{jobvalue}}"   mask-class="date-mask" indicator-class="date-indicator" bindchange="bindChangetime" >
+            <picker-view-column>
+              <view wx:for="{{years}}">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+              <view wx:for="{{months}}">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+              <view wx:for="{{days}}">{{item}}</view>
+            </picker-view-column>
+
+            <picker-view-column>
+              <view wx:for="{{hours}}">{{item}}</view>
+            </picker-view-column>
+
+            <picker-view-column>
+              <view wx:for="{{mins}}">{{item}}</view>
+            </picker-view-column>
+            
+            </picker-view>
+
+            <view class="timecancel" bindtap='jobcancel'>取消</view>
+            <view class="timesure" bindtap='jobsure'>确定</view>
+            
+            </view> -->
+
+            <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+            
+            <view>
+            {{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}
+            </view>
+            </picker>
+
+
+          </view>
+
+          <view class='eachInfor' hidden='{{riskdamage}}'>
+            <label>出险/定损地点</label>
+            <!-- <text class='redInfor' wx:if="{{carIdErr}}"></text>
+            <input type='text' name='carId' id='carId' placeholder='请输入车牌号' bindfocus='cancelRed' value='{{caseInfor[0].carId}}' /> -->
+
+            <view class='probedate1'>
+              <input value='{{title}}' name='chuxian' style='color:{{chuxiancolor}}'  bindfocus='chuxianfocus' bindblur='chuxianblur'/>
+            </view>
+
+            <image src="/pages/img/location.png" class='location' bindtap='risk'></image>
+
+            <!-- <image src='/pages/img/'></image> -->
+<!-- 
+            <view hidden='{{riskisShow}}'>
+
+              <map id="myMap" markers="{{markers}}" style="width:100%;height:300px;"longitude="{{poi.longitude}}" latitude="{{poi.latitude}}" scale='16' show-location>
+</map>
+
+<view wx:for="{{markers}}">当前位置为：{{item.title}}</view>
+
+            </view> -->
+
+          </view>
+
+
+          <view class='eachInfor' hidden='{{taipingcase}}'>
+            <label>案件类型</label>
+            <!-- <text class='redInfor' wx:if="{{carIdErr}}"></text>
+            <input type='text' name='carId' id='carId' placeholder='请输入车牌号' bindfocus='cancelRed' value='{{caseInfor[0].carId}}' /> -->
+
+            <!-- <view bindtap='caseisShow' class='probedate'>{{casemode}}</view>
+            <view class='dateform' hidden='{{caseform}}'>
+            <view class='selectyear'>
+            <text>案件类型</text>
+            <text class='selectyear-text1'>{{casemode}}</text>
+            </view>
+            <view class='year-m-d'>类型</view>
+            <picker-view style="width: 100%; height: 140px; text-align: center" value="{{casemodevalue}}"   mask-class="date-mask" indicator-class="date-indicator" bindchange="bindChangecase">
+              <picker-view-column>
+                <view wx:for="{{casemodes}}">{{item}}</view>
+              </picker-view-column>
+            </picker-view>
+            <view class="timecancel" bindtap='casecancel'>取消</view>
+            <view class="timesure" bindtap='casesure'>确定</view>
+          </view> -->
+
+          <picker mode="selector" range="{{casemodes}}" value="{{index4}}" bindchange="bindChangecase">
+            <view style='color:{{anjiancolor}}'>{{casemodes[index4]}}</view>
+            </picker>
+
+          </view>
+
+          <view class='eachInfor' hidden='{{itarea}}'>
+            <label>区域</label>
+
+            <!-- <view bindtap='itareaisShow' class='probedate'>{{itarea1}}</view>
+            <view class='dateform' hidden='{{itareaform}}'>
+            <view class='selectyear'>
+            <text>区域</text>
+            <text class='selectyear-text'>{{itarea1}}</text>
+            </view>
+            <view class='year-m-d'>区域</view>
+            <picker-view style="width: 100%; height: 140px; text-align: center" value="{{itareavalue}}"   mask-class="date-mask" indicator-class="date-indicator" bindchange="bindChangeitarea">
+              <picker-view-column>
+                <view wx:for="{{itareas}}">{{item}}</view>
+              </picker-view-column>
+            </picker-view>
+            <view class="timecancel" bindtap='itareacancel'>取消</view>
+            <view class="timesure" bindtap='itareasure'>确定</view>
+          </view> -->
+
+          <picker mode="selector" value='{{index3}}' range='{{itareas}}' bindchange='bindChangeitarea'>
+            <view style='color:{{areacolor}}'>{{itareas[index3]}}</view>
+          </picker>
+
+          </view>
+
+
+
+          <view class='eachInfor' hidden='{{pinganarea}}'>
+            <label>区域</label>
+            <!-- <text class='redInfor' wx:if="{{carIdErr}}"></text>
+            <input type='text' name='carId' id='carId' placeholder='请输入车牌号' bindfocus='cancelRed' value='{{caseInfor[0].carId}}' /> -->
+            <!-- <view bindtap='areaisShow' class='probedate'>{{urbanarea}} {{roadsection}}</view>
+ <view hidden='{{areaisShow}}'  class='dateform'>
+              <view class='selectyear'>
+              <text>选择区域</text>
+              <text class='selectyear-text'>{{urbanarea}} {{roadsection}}</text>
+              </view>
+              <view class="year-m-d">
+                <view class="year2">区域</view>
+                <view class="year2">路段</view>
+              </view>
+
+            <picker-view style="width: 100%; height: 140px; text-align: center" value="{{areavalue}}"   indicator-class="date-indicator" bindchange="bindChangearea">
+            <picker-view-column>
+              <view wx:for="{{areas}}">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+              <view wx:for="{{roadsections}}">{{item}}</view>
+            </picker-view-column>
+            </picker-view>
+
+            <view class="timecancel" bindtap='areacancel'>取消</view>
+            <view class="timesure" bindtap='areasure'>确定</view>
+            
+            </view> -->
+
+            <picker mode = "multiSelector" range="{{multiArray}}" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}">
+
+              <view style='color:{{areacolor1}}'>{{multiArray[0][multiIndex[0]]}}  {{multiArray[1][multiIndex[1]]}}</view>
+            </picker>
+
+          </view>
+
+          <view class='eachInfor' hidden='{{pinganperiod}}'>
+            <label>派工时间段</label>
+            <!-- <text class='redInfor' wx:if="{{carIdErr}}"></text>
+            <input type='text' name='carId' id='carId' placeholder='请输入车牌号' bindfocus='cancelRed' value='{{caseInfor[0].carId}}' /> -->
+
+            <!-- <view bindtap='periodisShow' class='probedate'>{{periodarea}} {{period}}</view>
+
+            <view hidden='{{periodisShow}}'  class='dateform'>
+              <view class='selectyear'>
+              <text>选择派工时间段</text>
+              <text class='selectyear-text'>{{periodarea}} {{period}}</text>
+              </view>
+              <view class="year-m-d">
+                <view class="year2">区域</view>
+                <view class="year2">时间</view>
+              </view>
+
+            <picker-view style="width: 100%; height: 140px; text-align: center" value="{{periodvalue}}"   indicator-class="date-indicator" bindchange="bindChangeperiod" >
+            <picker-view-column>
+              <view wx:for="{{periodareas}}">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column>
+              <view wx:for="{{periods}}">{{item}}</view>
+            </picker-view-column>
+            </picker-view>
+
+            <view class="timecancel" bindtap='periodcancel'>取消</view>
+            <view class="timesure" bindtap='periodsure'>确定</view>
+            
+            </view> -->
+
+            <picker mode = "multiSelector" range="{{multiArray1}}" bindchange="bindMultiPickerChange1" bindcolumnchange="bindMultiPickerColumnChange1" value="{{multiIndex1}}"  >
+
+            <view style='color:{{sendcolor}}'>{{multiArray1[0][multiIndex1[0]]}}  {{multiArray1[1][multiIndex1[1]]}}</view>
+            
+            </picker>
+
+          </view>
+
+
+
+          <view class='eachInfor' hidden='{{itWarranty}}'>
+            <label>保单号</label>
+
+            <text class='redInfor' wx:if="{{baodanIdErr}}">!保单号不能为空</text>
+            <!-- bindfocus='cancelRed' value='{{caseInfor[0].carId}}'  -->
+            <block wx:else>
+            <input type='text' name='warrantyId' id='warrantyId' placeholder='请输入保单号' disabled="{{baodanhao}}"/>
+            </block>
+            
+
+          </view>
+
+          <view class='eachInfor' hidden='{{itagency}}'>
+            <label>承保机构</label>
+
+            <text class='redInfor' wx:if="{{chengbaoIdErr}}">!承保机构不能为空</text>
+            <block wx:else>
+              <input type='text' name='agencyId' id='agencyId' placeholder='请输入承保机构' disabled="{{chengbaojigou}}"/>
+            </block>
+          </view>
+
+
+          <!-- <view class='eachInfor'>
+            <label>被保人</label>
+            <text class='redInfor' wx:if="{{casePersonErr}}">！</text>
+            <input type='text' name='casePerson' id='casePerson' bindfocus='cancelRed' placeholder='请输入被保人姓名' value='{{caseInfor[0].casePerson}}' />
+          </view>
+          <view class='eachInfor'>
+            <label>报案电话</label>
+            <text class='redInfor' wx:if="{{caseMobileErr}}">！</text>
+            <input type='text' name='caseMobile' id='caseMobile' bindfocus='cancelRed' placeholder='请输入报案电话' value='{{caseInfor[0].casePhone}}' />
+          </view>
+    <view class='eachInfor' wx:if='{{hasMoney}}'>
+            <label>预估金额</label>
+            <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+            <input type='number' name='money' id='money' bindfocus='cancelRed' placeholder='请输入预估金额' value='{{money}}' />
+          </view> -->
+
+          <view class='third_cell' wx:if='{{third_num<11&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息1</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile1' id='mobile1' bindfocus='cancelRed' placeholder='请输入三者信息1的联系电话' value='' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car1' id='car1' bindfocus='cancelRed' placeholder='请输入三者信息1的车牌号' value='' />
+            </view>
+          </view>
+          <view class='third_cell' wx:if='{{third_num<10&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息2</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile2' id='mobile2' bindfocus='cancelRed' placeholder='请输入三者信息2的联系电话' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car2' id='car2' bindfocus='cancelRed' placeholder='请输入三者信息2的车牌号' />
+            </view>
+          </view>
+          <view class='third_cell' wx:if='{{third_num<9&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息3</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile3' id='mobile3' bindfocus='cancelRed' placeholder='请输入三者信息3的联系电话' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car3' id='car3' bindfocus='cancelRed' placeholder='请输入三者信息3的车牌号' />
+            </view>
+          </view>
+          <view class='third_cell' wx:if='{{third_num<8&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息4</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile4' id='mobile4' bindfocus='cancelRed' placeholder='请输入三者信息4的联系电话' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car4' id='car4' bindfocus='cancelRed' placeholder='请输入三者信息4的车牌号' />
+            </view>
+          </view>
+          <view class='third_cell' wx:if='{{third_num<7&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息5</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile5' id='mobile5' bindfocus='cancelRed' placeholder='请输入三者信息5的联系电话' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car5' id='car5' bindfocus='cancelRed' placeholder='请输入三者信息5的车牌号' />
+            </view>
+          </view>
+          <view class='third_cell' wx:if='{{third_num<6&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息6</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile6' id='mobile6' bindfocus='cancelRed' placeholder='请输入三者信息6的联系电话' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car6' id='car6' bindfocus='cancelRed' placeholder='请输入三者信息6的车牌号' />
+            </view>
+          </view>
+          <view class='third_cell' wx:if='{{third_num<5&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息7</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile7' id='mobile7' bindfocus='cancelRed' placeholder='请输入三者信息7的联系电话' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car7' id='car7' bindfocus='cancelRed' placeholder='请输入三者信息7的车牌号' />
+            </view>
+          </view>
+          <view class='third_cell' wx:if='{{third_num<4&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息8</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile8' id='mobile8' bindfocus='cancelRed' placeholder='请输入三者信息8的联系电话' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car8' id='car8' bindfocus='cancelRed' placeholder='请输入三者信息8的车牌号' />
+            </view>
+          </view>
+          <view class='third_cell' wx:if='{{third_num<3&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息9</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile9' id='mobile9' bindfocus='cancelRed' placeholder='请输入三者信息9的联系电话' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car9' id='car9' bindfocus='cancelRed' placeholder='请输入三者信息9的车牌号' />
+            </view>
+          </view>
+          <view class='third_cell' wx:if='{{third_num<2&&third_num>0}}'>
+            <view class='third_tit'>
+              <text>三者信息10</text>
+              <image src='../../../img/decrease.png' bindtap='decrease_third'></image>
+            </view>
+            <view class='eachInfor'>
+              <label>联系电话</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='number' name='mobile10' id='mobile10' bindfocus='cancelRed' placeholder='请输入三者信息10的联系电话' />
+            </view>
+            <view class='eachInfor'>
+              <label>车牌号</label>
+              <text class='redInfor' wx:if="{{moneyErr}}">！</text>
+              <input type='text' name='car10' id='car10' bindfocus='cancelRed' placeholder='请输入三者信息10的车牌号' />
+            </view>
+          </view>
+
+          <!-- <view style='text-align:right' bindtap='addThird'>
+            <view class='addThird'>增加三者信息</view>
+          </view> -->
+      
+          <view class='eachInfor1'>
+            <!-- <view class='eachInfor'> -->
+              <label>备注</label>
+              <textarea name='remark' id='remark' style='line-height:22px;border:1px solid #ddd;margin:0px auto;width:98%;height:150px;overflow:scroll' maxlength='123456789' disabled="{{beizhu}}"  cursor-spacing="20rpx" >{{shortInfor1}}</textarea>
+
+
+            <!-- </view> -->
+          </view>
+          <button class='btn' wx:if='{{!allOver}}' form-type='submit' style='margin-bottom:20px'>确 定</button>
+          <button class='btn' style='background:#BBBBBB;color:#fff;margin-bottom:20px' wx:if='{{allOver}}' form-type='submit'>确 定</button>
+        </form>
+      </view>
+
+    </view>
+  </view>
+</view>
+<view class='carHostModal' wx:if='{{toallot}}'>
+  <view class='carHostcontent'>
+    <view class='confirm'>添加成功</view>
+    <view class='cancel yes' bindtap='toAllotP'>去分配</view>
+    <view class='cancel no' bindtap='back'>返回</view>
+  </view>
+</view>

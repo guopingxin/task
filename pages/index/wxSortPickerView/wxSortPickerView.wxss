@@ -1,0 +1,101 @@
+.imageCell{
+  width:100%;
+  height: 340px;
+  overflow: hidden;
+}
+.nav{
+  display: inline-block;
+  width:24%;
+  height: 340px;
+  overflow: scroll;
+}
+.imageContent{
+  display: inline-block;
+   width:76%;
+  height: 340px;
+  overflow: hidden;
+}
+.imgListName{
+  text-align: right;
+  background: #fff;
+  color:#aaa;
+  display: inline-block;
+  width:100%;
+  height: 40px;
+  line-height: 20px;
+  font-size:12px;
+}
+.imgListName text{
+  display: inline-block;
+  width:70%;
+  text-align: left;
+}
+.listActive text{
+  display: inline-block;
+  width:70%;
+  text-align: left;
+}
+.tip{
+  width:100%;
+  height:30px;
+  line-height: 30px;
+  background: #fff;
+  font-size: 14px;
+}
+.tip view{
+  margin-left:10px;
+}
+.listActive{
+   text-align: right;
+  display: inline-block;
+  width:100%;
+  height: 40px;
+  line-height: 20px;
+  font-size:12px;
+  font-weight: bold;
+  background: #aaa;
+  color:#fff;
+}
+.imglistTit{
+   text-align: center;
+  display: inline-block;
+  width:100%;
+  color:#fff;
+  background:#3891F8; 
+  height: 30px;
+  line-height: 30px;
+  font-size:14px;
+  font-weight: bold;
+  padding-bottom: 20px;
+  margin-bottom: -20px;
+}
+.allCell{
+  display:inline-block;
+  width:100%;
+  height: 340px;
+  overflow:scroll;
+}
+.imgCell{
+  display: inline-block;
+  width:33.3%;
+  text-align: center;
+   vertical-align: top;
+    height: 50px;
+    margin:10px 0px;
+}
+.plusPic{
+  width:66px;
+  height: 50px;
+}
+.imgborder{
+  width:50px;
+  margin:0px auto;
+   height: 50px;
+   vertical-align: top;
+   border:1px solid #ccc;
+}
+.imgborder .plusPic{
+  width:30px;
+  height:30px;
+  margin-top: 10px;
+}

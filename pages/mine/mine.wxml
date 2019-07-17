@@ -1,0 +1,147 @@
+<import src="../template/top.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}'>
+  <view class='header'>
+    <image src='../img/1.png'></image>
+    <view class='avatar_cell'>
+      <view class='avatar'>
+        <!-- <view class='avatar_top'></view> -->
+        <image src='../img/mineoff@2x.png' wx:if='{{!userInfor.face}}' bindtap='updateAvatar'></image>
+        <image src='{{hostName}}uploads/face/{{userInfor.face}}' wx:if='{{userInfor.face}}' bindtap='updateAvatar'></image>
+      </view>
+    </view>
+    <view class='user_name'>{{userInfor.nickname}}
+      <text wx:if='{{userInfor.job_no}}'>({{userInfor.job_no}})</text>
+    </view>
+  </view>
+  <view class='section'>
+    <view class='each_cell' bindtap='toData' wx:if='{{serviceType==1||serviceType==11||serviceType==2}}'>
+      <form bindsubmit='submitFormId' report-submit='true'>
+        <button form-type='submit' hover-class="none" class='formIdBtn1'>
+          <view class='each_tab'>
+            <view class='icon_cell'>
+              <image src='../img/sjtj@2x.png' style='width:21px;height:23px;'></image>
+            </view>
+            <view class='tab_text'>
+              数据统计
+            </view>
+          </view>
+        </button>
+      </form>
+    </view>
+    <view class='each_cell' bindtap='toDataOrder' wx:else>
+      <form bindsubmit='submitFormId' report-submit='true'>
+        <button form-type='submit' hover-class="none" class='formIdBtn1'>
+          <view class='each_tab'>
+            <view class='icon_cell'>
+              <image src='../img/sjtj@2x.png' style='width:21px;height:23px;'></image>
+            </view>
+            <view class='tab_text'>
+              数据统计
+            </view>
+          </view>
+        </button>
+      </form>
+    </view>
+    <!-- <view class='each_cell' bindtap='toOrder'>
+      <view class='each_tab'>
+        <view class='icon_cell'>
+          <image src='../img/sign.png' style='width:25px;height:25px;'></image>
+        </view>
+        <view class='tab_text'>
+          所有订单
+        </view>
+      </view>
+    </view> -->
+    <view class='each_cell' bindtap='bindWX' wx:if='{{!userInfor.openid}}'>
+      <form bindsubmit='submitFormId' report-submit='true'>
+        <button form-type='submit' hover-class="none" class='formIdBtn1'>
+          <view class='each_tab'>
+            <view class='icon_cell'>
+              <image src='../img/wxbind.png'></image>
+            </view>
+            <view class='tab_text'>
+              绑定微信
+            </view>
+          </view>
+        </button>
+      </form>
+    </view>
+    {{userInfor.openId}}
+    <view class='each_cell' bindtap='unbindWX' wx:if='{{userInfor.openid}}'>
+      <form bindsubmit='submitFormId' report-submit='true'>
+        <button form-type='submit' hover-class="none" class='formIdBtn1'>
+          <view class='each_tab'>
+            <view class='icon_cell'>
+              <image src='../img/wxbind.png'></image>
+            </view>
+            <view class='tab_text'>
+              解绑微信
+            </view>
+          </view>
+        </button>
+      </form>
+    </view>
+
+    <view class='each_cell' bindtap='tempw'>
+      <form bindsubmit='submitFormId' report-submit='true'>
+        <button form-type='submit' hover-class="none" class='formIdBtn1'>
+          <view class='each_tab'>
+            <view class='icon_cell'>
+              <image src='../img/zlxg@2x.png' style='width:25px;height:25px;'></image>
+            </view>
+            <view class='tab_text'>
+              修改密码
+            </view>
+          </view>
+        </button>
+      </form>
+    </view>
+    <view class='each_cell' bindtap='logoutModal'>
+      <form bindsubmit='submitFormId' report-submit='true'>
+        <button form-type='submit' hover-class="none" class='formIdBtn1'>
+          <view class='each_tab'>
+            <view class='icon_cell'>
+              <image src='../img/tcdl@2x.png' style='width:25px;height:25px;'></image>
+            </view>
+            <view class='tab_text'>
+              退出登录
+            </view>
+          </view>
+        </button>
+      </form>
+    </view>
+    <view class='each_cell' bindtap='toSign'>
+      <form bindsubmit='submitFormId' report-submit='true'>
+        <button form-type='submit' hover-class="none" class='formIdBtn1'>
+          <view class='each_tab'>
+            <view class='icon_cell'>
+              <image src='../img/sign.png' style='width:25px;height:25px;'></image>
+            </view>
+            <view class='tab_text'>
+              打卡
+            </view>
+          </view>
+        </button>
+      </form>
+    </view>
+  </view>
+</view>
+<view class='modal' wx:if='{{logOut}}'>
+  <view class='modalContent'>
+    <view class='data'>确定退出？</view>
+    <view class='cancelTop'>
+      <view class='cancel no' bindtap='cancelModal'>取消</view>
+      <view class='cancel yes' bindtap='logOut'>退出</view>
+    </view>
+  </view>
+</view>
+<view class='modal' wx:if='{{logOut}}'>
+  <view class='modalContent'>
+    <view class='data'>确定退出？</view>
+    <view class='cancelTop'>
+      <view class='cancel no' bindtap='cancelModal'>取消</view>
+      <view class='cancel yes' bindtap='logOutL'>退出</view>
+    </view>
+  </view>
+</view>

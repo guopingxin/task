@@ -1,0 +1,332 @@
+
+    <view class='imageCell'>
+      <view class='nav'  >
+       
+        <view wx:for='{{listArr}}' wx:for-item="itemName" class='{{itemName.class}}' data-name='{{itemName.dataName}}' bindtap='changeView'>
+          <text>{{itemName.name}}</text> 
+        </view>
+        
+      </view>
+
+      <view class='imageContent'>
+      
+          <view wx:if='{{moduleArr[0]}}'>
+          
+          </view>
+    
+          <view id='ckzp1' class='allCell' data-modul='ckzp1' wx:if='{{moduleArr[1]}}'>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+             
+               <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+           
+                <view id='ckzp2' class='allCell' wx:if='{{moduleArr[2]}}'>
+             <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+           
+
+           <view id='ckzp3' class='allCell' wx:if='{{moduleArr[3]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+
+           <view id='ckzp4' class='allCell' wx:if='{{moduleArr[4]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+           <view id='ckzp5' class='allCell' wx:if='{{moduleArr[5]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+           <view id='ckzp6' class='allCell' wx:if='{{moduleArr[6]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          <view wx:if='{{moduleArr[7]}}'>
+          </view>
+
+           <view id='gydz1' class='allCell' wx:if='{{moduleArr[8]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+
+
+           <view id='gydz2' class='allCell' wx:if='{{moduleArr[9]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          
+           <view id='gydz3' class='allCell' wx:if='{{moduleArr[10]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          <view id='gydz4' class='allCell' wx:if='{{moduleArr[11]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          <view id='gydz5' class='allCell' wx:if='{{moduleArr[12]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          <view id='gydz6' class='allCell' wx:if='{{moduleArr[13]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          <view id='gydz7' class='allCell' wx:if='{{moduleArr[14]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          <view id='gydz8' class='allCell' wx:if='{{moduleArr[15]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          <view id='gydz9' class='allCell' wx:if='{{moduleArr[16]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          <view id='gydz10' class='allCell' wx:if='{{moduleArr[17]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+           
+              <view wx:if='{{moduleArr[18]}}'>
+          </view>
+           <view id='zfdz1' class='allCell' wx:if='{{moduleArr[19]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+            <view id='zfdz2' class='allCell' wx:if='{{moduleArr[20]}}'>
+              
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <image class='plusPic' src='../../img/temp.jpg'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' src='../../img/plus.png'></image>
+                </view>
+              </view>
+          </view>
+          
+           
+ 
+
+      </view>
+    
+    </view>

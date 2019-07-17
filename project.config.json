@@ -1,0 +1,188 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.1.1",
+	"appid": "wx6f4ce1e65cbdddd6",
+	"projectname": "%E8%BD%A6%E4%BB%A3%E9%BC%A0%E4%BD%9C%E4%B8%9A",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 23,
+			"list": [
+				{
+					"id": -1,
+					"name": "hhh",
+					"pathName": "pages/test/test",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "detail",
+					"pathName": "pages/index/claimsDetail/claimsDetail",
+					"query": "",
+					"scene": "1006"
+				},
+				{
+					"id": -1,
+					"name": "dd",
+					"pathName": "pages/index/carTrace/carTrace",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "添加进度",
+					"pathName": "pages/index/addProgress/addProgress",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "照片",
+					"pathName": "pages/index/addphoto/addphoto",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "展示地图",
+					"pathName": "pages/index/showTrace/showTrace",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "jindu",
+					"pathName": "pages/index/addProgress/addProgress",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "添加风险",
+					"pathName": "pages/index/risk/addRisk/addRisk",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "勘察定损详情",
+					"pathName": "pages/index/checkLoss/checkLossDeatailNew/checkLossDeatailNew",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "选择照片",
+					"pathName": "pages/index/checkLoss/abulmSesect/abulmSesect",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "查勘定损",
+					"pathName": "pages/index/checkLoss/checkLoss",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "风险调查",
+					"pathName": "pages/index/risk/risk",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "定损详情",
+					"pathName": "pages/index/checkLoss/checkLossDeatail/checkLossDeatail",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "推修",
+					"pathName": "pages/index/checkLoss/fix/fix",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "推修",
+					"pathName": "pages/index/fixCar/fixCar",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "添加推修",
+					"pathName": "pages/index/fixCar/addFixCar/addFixCar",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "编辑推修",
+					"pathName": "pages/index/fixCar/editFixCar/editFixCar",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "维修列表",
+					"pathName": "pages/index/fixCar1/fixCar",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "代办理赔列表",
+					"pathName": "pages/index/adminAgency/adminAgency",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": 20,
+					"name": "签到",
+					"pathName": "pages/mine/sign/sign",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加代办理赔",
+					"pathName": "pages/index/checkLoss/addcheckLoss/addcheckLoss",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/mine",
+					"query": ""
+				},
+				{
+					"id": 23,
+					"name": "请假",
+					"pathName": "pages/mine/sign/leave/leave",
+					"query": ""
+				}
+			]
+		}
+	}
+}

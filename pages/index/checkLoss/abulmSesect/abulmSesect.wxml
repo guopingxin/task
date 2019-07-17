@@ -1,0 +1,15 @@
+<!--pages/index/checkLoss/abulmSesect/abulmSesect.wxml-->
+<view wx:if='{{pageReady}}'>
+<view class='imgCell' wx:for='{{allmg}}' wx:item='item'>
+
+                <image bindtap='openImg' class='plusPic' id='{{item.imgId}}' src='{{item}}'></image>
+              </view>
+              <view class='imgCell'>
+                <view class='imgborder'>
+                  <image class='plusPic' bindtap='seletPic' src='../../../img/plus.png'></image>
+                </view>
+              </view>
+<view class='end' bindtap='submit'>
+  <button class='taskOver'>确认提交</button>
+</view>
+</view>

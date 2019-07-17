@@ -1,0 +1,6 @@
+<import src="../../template/getDataList/getDataList.wxml" />
+<import src="../../template/top1.wxml" />
+<template is="top" data="{{titleTop,back_cell,title_cell}}"></template>
+<view class='{{container}}'>
+<template is="listXml" data="{{allData,titTop}}"/>
+</view>
